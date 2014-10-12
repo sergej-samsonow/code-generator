@@ -1,8 +1,9 @@
-package com.github.sergejsamsonow.codegenerator.producer;
+package com.github.sergejsamsonow.codegenerator.api;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Test;
+import com.github.sergejsamsonow.codegenerator.api.CodeFormat;
 
 public class CodeFormatTest {
 

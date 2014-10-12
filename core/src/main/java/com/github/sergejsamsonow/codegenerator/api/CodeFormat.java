@@ -1,4 +1,4 @@
-package com.github.sergejsamsonow.codegenerator.producer;
+package com.github.sergejsamsonow.codegenerator.api;
 
 public class CodeFormat {
 
