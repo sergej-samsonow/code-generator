@@ -31,11 +31,6 @@ public class CodeWriter {
         this.shift = sequenceBuilder.toString();
     }
 
-    protected StringBuilder getBuilder() {
-        // return builder;
-        return null;
-    }
-
     public void addRaw(String data) {
         builder.append(data);
     }
