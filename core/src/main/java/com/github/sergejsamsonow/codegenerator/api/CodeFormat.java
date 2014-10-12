@@ -17,7 +17,7 @@ public class CodeFormat {
         return newLine;
     }
 
-    public String shiftWidthSequence() {
+    public String shiftSequence() {
         return shiftWith;
     }
 
