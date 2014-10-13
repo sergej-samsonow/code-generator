@@ -35,11 +35,24 @@ public class ParsedBean {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ParsedBean)) return false;
+        if (!(object instanceof ParsedBean))
+            return false;
         ParsedBean casted = (ParsedBean) object;
         return Objects.equals(getNamespace(), casted.getNamespace())
             && Objects.equals(getType(), casted.getType())
             && Objects.equals(getProperties(), casted.getProperties());
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("ParsedBean (");
+        builder.append("namespace: " + getNamespace());
+        builder.append(", ");
+        builder.append("type: " + getType());
+        builder.append(", ");
+        builder.append("properties: " + Objects.toString(getProperties()));
+        builder.append(")");
+        return builder.toString();
+    }
 }

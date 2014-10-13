@@ -27,10 +27,21 @@ public class ParsedProperty {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ParsedProperty)) return false;
+        if (!(object instanceof ParsedProperty))
+            return false;
         ParsedProperty casted = (ParsedProperty) object;
         return Objects.equals(getName(), casted.getName())
             && Objects.equals(getType(), casted.getType());
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("ParsedPropery (");
+        builder.append("name: " + getName());
+        builder.append(", ");
+        builder.append("type: " + getType());
+        builder.append(")");
+        return builder.toString();
+    }
 }
