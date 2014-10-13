@@ -20,7 +20,7 @@ abstract public class PartialRendererEngine<D, P> implements ProducerEngine<P> {
     @Override
     final public void setRenderFormat(CodeFormat format) {
         for (Renderer<D> renderer : getRenderers())
-            renderer.setFromat(format);
+            renderer.setFormat(format);
     }
 
     @Override

@@ -54,7 +54,7 @@ public class PartialRendererEngineTest {
     @Test
     public void testSetRenderFormat() {
         wrapper.setRenderFormat(format);
-        Mockito.verify(renderer).setFromat(format);
+        Mockito.verify(renderer).setFormat(format);
     }
 
     @Test

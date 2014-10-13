@@ -2,7 +2,7 @@ package com.github.sergejsamsonow.codegenerator.api;
 
 public interface Renderer<D> {
 
-    public void setFromat(CodeFormat format);
+    public void setFormat(CodeFormat format);
 
     default void prepare(D data) {}
 
