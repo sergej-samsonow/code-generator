@@ -26,6 +26,10 @@ public class BaseRendererTest {
         private CodeWriter code = null;
         private MethodCodeWriter methodCode = null;
 
+        public AccessWrapper(CodeFormat format) {
+            super(format);
+        }
+
         @Override
         protected void prepare() {
             data = getData();
@@ -45,6 +49,10 @@ public class BaseRendererTest {
 
         private static final String EXPECTED = "A" + N + S + "B" + N;
 
+        public RenderWrapper(CodeFormat format) {
+            super(format);
+        }
+
         @Override
         protected void render() {
             CodeWriter code = getCodeWriter();
@@ -63,8 +71,7 @@ public class BaseRendererTest {
     public void setUp() {
         Mockito.when(format.newLineSequence()).thenReturn(N);
         Mockito.when(format.shiftSequence()).thenReturn(S);
-        accessWrapper = new AccessWrapper();
-        accessWrapper.setFormat(format);
+        accessWrapper = new AccessWrapper(format);
     }
 
     @Test
@@ -105,8 +112,7 @@ public class BaseRendererTest {
 
     @Test
     public void testFlush() throws Exception {
-        RenderWrapper renderWrapper = new RenderWrapper();
-        renderWrapper.setFormat(format);
+        RenderWrapper renderWrapper = new RenderWrapper(format);
         assertThat(renderWrapper.render(D), equalTo(RenderWrapper.EXPECTED));
     }
 }

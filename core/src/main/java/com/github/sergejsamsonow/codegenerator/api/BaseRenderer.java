@@ -6,8 +6,7 @@ public abstract class BaseRenderer<D> implements Renderer<D> {
     private CodeWriter code;
     private MethodCodeWriter methodCode;
 
-    @Override
-    final public void setFormat(CodeFormat format) {
+    public BaseRenderer(CodeFormat format) {
         final StringBuilder builder = new StringBuilder();
         code = new CodeWriter(format, 0, builder);
         methodCode = new MethodCodeWriter(format, builder);

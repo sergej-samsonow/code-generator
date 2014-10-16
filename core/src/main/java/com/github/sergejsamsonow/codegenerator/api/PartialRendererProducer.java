@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-abstract public class PartialRendererEngine<D, P> implements ProducerEngine<P> {
+abstract public class PartialRendererProducer<D, P> implements ProducerAccess<P> {
 
     private List<Renderer<D>> renderers;
 
     @SafeVarargs
-    public PartialRendererEngine(Renderer<D>... renderers) {
+    public PartialRendererProducer(Renderer<D>... renderers) {
         this.renderers = Arrays.asList(renderers);
     }
 
@@ -18,19 +18,13 @@ abstract public class PartialRendererEngine<D, P> implements ProducerEngine<P> {
     }
 
     @Override
-    final public void setRenderFormat(CodeFormat format) {
-        for (Renderer<D> renderer : getRenderers())
-            renderer.setFormat(format);
-    }
-
-    @Override
-    final public Result process(P parsed) {
+    public void newItem(P parsed) {
         D data = transform(parsed);
         prepareTransformed(data);
-        return new Result(subpath(data), renderData(data));
+        write(data, code(data));
     }
 
-    private String renderData(D data) {
+    private String code(D data) {
         StringBuilder output = new StringBuilder();
         for (Renderer<D> renderer : getRenderers())
             output.append(renderer.render(data));
@@ -45,5 +39,5 @@ abstract public class PartialRendererEngine<D, P> implements ProducerEngine<P> {
 
     abstract protected D transform(P parsed);
 
-    abstract protected String subpath(D data);
+    abstract protected void write(D data, String code);
 }
