@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.StringUtils.startsWith;
 import static org.apache.commons.lang3.StringUtils.substringAfterLast;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class SimplePojoProperty implements PojoProperty {
@@ -129,4 +130,44 @@ public class SimplePojoProperty implements PojoProperty {
         return name;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof PojoProperty))
+            return false;
+        PojoProperty casted = (PojoProperty) object;
+        return Objects.equals(isList(), casted.isList())
+            && Objects.equals(getInitCode(), casted.getInitCode())
+            && Objects.equals(getImportedTypes(), casted.getImportedTypes())
+            && Objects.equals(getDeclarationType(), casted.getDeclarationType())
+            && Objects.equals(getGetterName(), casted.getGetterName())
+            && Objects.equals(getSetterName(), casted.getSetterName())
+            && Objects.equals(getFieldName(), casted.getFieldName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isList(), getInitCode(), getImportedTypes(), getDeclarationType(), getGetterName(),
+            getSetterName(), getFieldName());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("SimplePojoProperty (");
+        builder.append("list: " + isList());
+        builder.append(", ");
+        builder.append("initCode: " + getInitCode());
+        builder.append(", ");
+        builder.append("importedTypes: " + Objects.toString(getImportedTypes()));
+        builder.append(", ");
+        builder.append("declarationType: " + getDeclarationType());
+        builder.append(", ");
+        builder.append("getterName: " + getGetterName());
+        builder.append(", ");
+        builder.append("setterName: " + getSetterName());
+        builder.append(", ");
+        builder.append("fieldName: " + getFieldName());
+        builder.append(")");
+        return builder.toString();
+    }
 }

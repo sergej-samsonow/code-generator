@@ -2,6 +2,7 @@ package com.github.sergejsamsonow.codegenerator.pojo.model;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class SimplePojoBean implements PojoBean {
@@ -50,4 +51,34 @@ public class SimplePojoBean implements PojoBean {
         this.imports.remove(item);
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof PojoBean))
+            return false;
+        PojoBean casted = (PojoBean) object;
+        return Objects.equals(getPackageName(), casted.getPackageName())
+            && Objects.equals(getClassName(), casted.getClassName())
+            && Objects.equals(getImports(), casted.getImports())
+            && Objects.equals(getProperties(), casted.getProperties());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPackageName(), getClassName(), getImports(), getProperties());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("SimplePojoBean (");
+        result.append("packageName: " + getPackageName());
+        result.append(", ");
+        result.append("className: " + getClassName());
+        result.append(", ");
+        result.append("imports: " + Objects.toString(getImports()));
+        result.append(", ");
+        result.append("properties: " + Objects.toString(getProperties()));
+        result.append(")");
+        return result.toString();
+    }
 }
