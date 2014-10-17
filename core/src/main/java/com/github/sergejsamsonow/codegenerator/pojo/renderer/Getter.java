@@ -21,6 +21,7 @@ public class Getter extends AbstractPropertyRenderer<PojoProperty, PojoBean> {
         method.start("public %s %s() {", type, name);
         method.code("return %s;", field);
         method.end();
+        method.emptyNewLine();
     }
 
 }

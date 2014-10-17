@@ -21,5 +21,6 @@ public class Setter extends AbstractPropertyRenderer<PojoProperty, PojoBean> {
         method.start("public void %s(%s %s) {", name, type, field);
         method.code("this.%s = %s;", field, field);
         method.end();
+        method.emptyNewLine();
     }
 }
