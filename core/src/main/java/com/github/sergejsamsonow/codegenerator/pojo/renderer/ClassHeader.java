@@ -38,8 +38,7 @@ public class ClassHeader extends BaseRenderer<PojoBean> {
         if (imports.isEmpty())
             return;
         writer.emptyNewLine();
-        for (String current : imports)
-            writer.line("import %s;", current);
+        imports.stream().sorted().forEach(current -> writer.line("import %s;", current));
     }
 
     private void writeClassDeclaration() {

@@ -1,0 +1,8 @@
+package frontend;
+
+import fragments.Attributes;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Form {
+

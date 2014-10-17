@@ -15,14 +15,14 @@ public class ClassFooterTest {
 
     private static final CodeFormat FORMAT = CodeFormat.unixWithSpaces(4);
 
-    private ClassFooter renderer;
+    private ClassFooter<PojoBean> renderer;
 
     @Mock
     private PojoBean bean;
 
     @Before
     public void setUp() {
-        renderer = new ClassFooter(FORMAT);
+        renderer = new ClassFooter<>(FORMAT);
     }
 
     @Test

@@ -1,0 +1,44 @@
+package frontend;
+
+import fragments.Attribute;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Form {
+
+    private String place;
+    private Integer age;
+    private List<Attribute> attributes;
+
+    public Form() {
+        setPlace("");
+        setAge(0);
+        setAttributes(new ArrayList<>());
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
+
+}
+

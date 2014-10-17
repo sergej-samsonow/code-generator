@@ -4,7 +4,7 @@ import com.github.sergejsamsonow.codegenerator.api.BaseRenderer;
 import com.github.sergejsamsonow.codegenerator.api.CodeFormat;
 import com.github.sergejsamsonow.codegenerator.api.CodeWriter;
 
-public class ClassFooter extends BaseRenderer<Object> {
+public class ClassFooter<D> extends BaseRenderer<D> {
 
     public ClassFooter(CodeFormat format) {
         super(format);

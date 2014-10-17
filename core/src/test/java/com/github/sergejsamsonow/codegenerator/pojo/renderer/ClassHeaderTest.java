@@ -46,4 +46,15 @@ public class ClassHeaderTest {
             Content.of("/pojo-renderer/ClassHeader-Simple.txt")));
     }
 
+    @Test
+    public void testRenderSortedImports() throws Exception {
+        when(bean.getImports()).thenReturn(new HashSet<>(asList(
+            "fragments.Attributes",
+            "java.util.List",
+            "java.util.ArrayList"
+            )));
+        assertThat(renderer.render(bean), equalTo(
+            Content.of("/pojo-renderer/ClassHeader-SortedImports.txt")));
+    }
+
 }
