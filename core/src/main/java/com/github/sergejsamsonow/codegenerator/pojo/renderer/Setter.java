@@ -15,10 +15,10 @@ public class Setter extends AbstractPropertyRenderer<PojoProperty, PojoBean> {
     protected void writePropertyCode(PojoProperty property) {
         String type = property.getDeclarationType();
         String field = property.getFieldName();
-        String setter = property.getSetterName();
-        MethodCodeWriter writer = getMethodCodeWriter();
-        writer.start("public void %s(%s %s) {", setter, type, field);
-        writer.code("this.%s = %s;", field, field);
-        writer.end();
+        String name = property.getSetterName();
+        MethodCodeWriter method = getMethodCodeWriter();
+        method.start("public void %s(%s %s) {", name, type, field);
+        method.code("this.%s = %s;", field, field);
+        method.end();
     }
 }
