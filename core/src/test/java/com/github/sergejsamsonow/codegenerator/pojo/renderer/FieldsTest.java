@@ -15,32 +15,35 @@ import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoProperty;
 
 @RunWith(MockitoJUnitRunner.class)
-public class FieldsDeclarationAndInitializationTest {
+public class FieldsTest {
 
     private static final CodeFormat FORMAT = CodeFormat.unixWithSpaces(4);
 
-    private FieldsDeclarationAndInitialization renderer;
+    private Fields renderer;
 
     @Mock
     private PojoBean bean;
 
     @Mock
-    private PojoProperty property;
+    private PojoProperty field;
+
+    @Mock
+    private PojoProperty name;
 
     @Before
     public void setUp() {
-        renderer = new FieldsDeclarationAndInitialization(FORMAT);
-        when(bean.getClassName()).thenReturn("Form");
-        when(property.getDeclarationType()).thenReturn("String");
-        when(property.getFieldName()).thenReturn("field");
-        when(property.getInitCode()).thenReturn("\"\"");
-        when(property.getSetterName()).thenReturn("setField");
-        when(bean.getProperties()).thenReturn(asList(property));
+        renderer = new Fields(FORMAT);
+        when(field.getDeclarationType()).thenReturn("String");
+        when(field.getFieldName()).thenReturn("field");
+        when(name.getDeclarationType()).thenReturn("String");
+        when(name.getFieldName()).thenReturn("name");
+        when(bean.getProperties()).thenReturn(asList(field, name));
     }
 
     @Test
-    public void testRender() throws Exception {
+    public void testRender() {
         assertThat(renderer.render(bean),
-            equalTo(Content.of("/pojo-renderer/FieldsDeclarationAndInitialization-Simple.txt")));
+            equalTo(Content.of("/pojo-renderer/Fields-Simple.txt")));
     }
+
 }
