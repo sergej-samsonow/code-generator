@@ -1,0 +1,6 @@
+    private String field;
+
+    public Form() {
+        setField("");
+    }
+
