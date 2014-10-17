@@ -1,15 +1,12 @@
 package com.github.sergejsamsonow.codegenerator.pojo.model;
 
-import java.util.List;
 import java.util.Set;
 
-public interface PojoBean {
+public interface PojoBean extends ContainsProperties<PojoProperty> {
 
     public String getPackageName();
 
     public String getClassName();
-
-    public List<PojoProperty> getProperties();
 
     public Set<String> getImports();
 
