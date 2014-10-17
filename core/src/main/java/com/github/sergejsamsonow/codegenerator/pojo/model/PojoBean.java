@@ -1,6 +1,7 @@
 package com.github.sergejsamsonow.codegenerator.pojo.model;
 
 import java.util.Set;
+import com.github.sergejsamsonow.codegenerator.api.ContainsProperties;
 
 public interface PojoBean extends ContainsProperties<PojoProperty> {
 

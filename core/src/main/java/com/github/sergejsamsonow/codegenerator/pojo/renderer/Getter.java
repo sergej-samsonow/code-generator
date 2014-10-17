@@ -1,5 +1,6 @@
 package com.github.sergejsamsonow.codegenerator.pojo.renderer;
 
+import com.github.sergejsamsonow.codegenerator.api.AbstractPropertyRenderer;
 import com.github.sergejsamsonow.codegenerator.api.CodeFormat;
 import com.github.sergejsamsonow.codegenerator.api.MethodCodeWriter;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;

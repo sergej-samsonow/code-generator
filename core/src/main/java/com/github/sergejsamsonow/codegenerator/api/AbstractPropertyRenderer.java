@@ -1,8 +1,5 @@
-package com.github.sergejsamsonow.codegenerator.pojo.renderer;
+package com.github.sergejsamsonow.codegenerator.api;
 
-import com.github.sergejsamsonow.codegenerator.api.BaseRenderer;
-import com.github.sergejsamsonow.codegenerator.api.CodeFormat;
-import com.github.sergejsamsonow.codegenerator.pojo.model.ContainsProperties;
 
 public abstract class AbstractPropertyRenderer<X, D extends ContainsProperties<X>> extends BaseRenderer<D> {
 

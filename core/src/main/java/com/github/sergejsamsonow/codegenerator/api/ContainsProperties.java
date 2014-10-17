@@ -1,4 +1,4 @@
-package com.github.sergejsamsonow.codegenerator.pojo.model;
+package com.github.sergejsamsonow.codegenerator.api;
 
 import java.util.List;
 
