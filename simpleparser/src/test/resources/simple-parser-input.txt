@@ -1,0 +1,12 @@
+Namespace: frontend
+
+Page
+header	: Header
+message	: String
+footer	: Footer
+
+Header
+content	: String
+
+Footer
+content	:String
