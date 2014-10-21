@@ -1,0 +1,4 @@
+    public String getField() {
+        return field;
+    }
+

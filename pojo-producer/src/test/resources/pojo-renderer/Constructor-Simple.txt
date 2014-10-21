@@ -1,0 +1,4 @@
+    public Form() {
+        setField("");
+    }
+
