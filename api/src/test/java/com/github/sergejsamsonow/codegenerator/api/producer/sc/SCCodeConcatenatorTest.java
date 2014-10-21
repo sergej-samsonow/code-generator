@@ -10,21 +10,21 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CodeWriterTest {
+public class SCCodeConcatenatorTest {
 
     private static final String NL = "N";
     private static final String SW = "T";
 
     @Mock
-    private CodeFormat format;
+    private SCNewLineAndIndentationFormat format;
 
-    private CodeWriter writer;
+    private SCCodeConcatenator writer;
 
     @Before
     public void setUp() {
         Mockito.when(format.newLineSequence()).thenReturn(NL);
         Mockito.when(format.shiftSequence()).thenReturn(SW);
-        writer = new CodeWriter(format);
+        writer = new SCCodeConcatenator(format);
     }
 
     @Test
@@ -49,21 +49,21 @@ public class CodeWriterTest {
 
     @Test
     public void testIndent() throws Exception {
-        CodeWriter indented = writer.indent();
+        SCCodeConcatenator indented = writer.indent();
         indented.line("A");
         assertThat(indented.flush(), equalTo(SW + "A" + NL));
     }
 
     @Test
     public void testIndentFlushParent() throws Exception {
-        CodeWriter indented = writer.indent();
+        SCCodeConcatenator indented = writer.indent();
         indented.line("A");
         assertThat(writer.flush(), equalTo(SW + "A" + NL));
     }
 
     @Test
     public void testIndentFlushChild() throws Exception {
-        CodeWriter indented = writer.indent();
+        SCCodeConcatenator indented = writer.indent();
         writer.line("A");
         assertThat(indented.flush(), equalTo("A" + NL));
     }

@@ -4,32 +4,32 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Test;
 
-public class CodeFormatTest {
+public class SCNewLineAndIndentationFormatTest {
 
     @Test
     public void testWindowsWithTabs() throws Exception {
-        CodeFormat format = CodeFormat.windowsWithTabs();
+        SCNewLineAndIndentationFormat format = SCNewLineAndIndentationFormat.windowsWithTabs();
         assertThat(format.shiftSequence(), equalTo("\t"));
         assertThat(format.newLineSequence(), equalTo("\r\n"));
     }
 
     @Test
     public void testUnixWithTabs() throws Exception {
-        CodeFormat format = CodeFormat.unixWithTabs();
+        SCNewLineAndIndentationFormat format = SCNewLineAndIndentationFormat.unixWithTabs();
         assertThat(format.shiftSequence(), equalTo("\t"));
         assertThat(format.newLineSequence(), equalTo("\n"));
     }
 
     @Test
     public void testUnixWithSpaces() throws Exception {
-        CodeFormat format = CodeFormat.unixWithSpaces(4);
+        SCNewLineAndIndentationFormat format = SCNewLineAndIndentationFormat.unixWithSpaces(4);
         assertThat(format.shiftSequence(), equalTo("    "));
         assertThat(format.newLineSequence(), equalTo("\n"));
     }
 
     @Test
     public void testWindowsWithSpaces() throws Exception {
-        CodeFormat format = CodeFormat.windowsWithSpaces(4);
+        SCNewLineAndIndentationFormat format = SCNewLineAndIndentationFormat.windowsWithSpaces(4);
         assertThat(format.shiftSequence(), equalTo("    "));
         assertThat(format.newLineSequence(), equalTo("\r\n"));
     }

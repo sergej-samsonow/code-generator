@@ -1,6 +1,6 @@
 package com.github.sergejsamsonow.codegenerator.api.producer.sc;
 
-public class CodeFormat {
+public class SCNewLineAndIndentationFormat {
 
     private static final String TAB = "\t";
     private static final String UNIX_NL = "\n";
@@ -8,7 +8,7 @@ public class CodeFormat {
     private String newLine;
     private String shiftWith;
 
-    private CodeFormat(String newLine, String shiftWith) {
+    private SCNewLineAndIndentationFormat(String newLine, String shiftWith) {
         this.newLine = newLine;
         this.shiftWith = shiftWith;
     }
@@ -21,20 +21,20 @@ public class CodeFormat {
         return shiftWith;
     }
 
-    final public static CodeFormat windowsWithTabs() {
-        return new CodeFormat(WINDOWS_NL, TAB);
+    final public static SCNewLineAndIndentationFormat windowsWithTabs() {
+        return new SCNewLineAndIndentationFormat(WINDOWS_NL, TAB);
     }
 
-    final public static CodeFormat windowsWithSpaces(int count) {
-        return new CodeFormat(WINDOWS_NL, shiftSequence(count));
+    final public static SCNewLineAndIndentationFormat windowsWithSpaces(int count) {
+        return new SCNewLineAndIndentationFormat(WINDOWS_NL, shiftSequence(count));
     }
 
-    final public static CodeFormat unixWithTabs() {
-        return new CodeFormat(UNIX_NL, TAB);
+    final public static SCNewLineAndIndentationFormat unixWithTabs() {
+        return new SCNewLineAndIndentationFormat(UNIX_NL, TAB);
     }
 
-    final public static CodeFormat unixWithSpaces(int count) {
-        return new CodeFormat(UNIX_NL, shiftSequence(count));
+    final public static SCNewLineAndIndentationFormat unixWithSpaces(int count) {
+        return new SCNewLineAndIndentationFormat(UNIX_NL, shiftSequence(count));
     }
 
     private static String shiftSequence(int count) {

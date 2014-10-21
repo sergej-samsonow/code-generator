@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MethodCodeWriterTest {
+public class SCMethodCodeConcatenatorTest {
 
     private static final String N = "NL";
     private static final String S = "SW";
@@ -18,15 +18,15 @@ public class MethodCodeWriterTest {
     private static final String I = S + C;
 
     @Mock
-    private CodeFormat format;
+    private SCNewLineAndIndentationFormat format;
 
-    private MethodCodeWriter writer;
+    private SCMethodCodeConcatenator writer;
 
     @Before
     public void setUp() {
         Mockito.when(format.newLineSequence()).thenReturn(N);
         Mockito.when(format.shiftSequence()).thenReturn(S);
-        writer = new MethodCodeWriter(format);
+        writer = new SCMethodCodeConcatenator(format);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class MethodCodeWriterTest {
 
     @Test
     public void testMethodCodeWriter() throws Exception {
-        CodeWriter codeWriter = writer.methodCodeWriter();
+        SCCodeConcatenator codeWriter = writer.methodCodeWriter();
         codeWriter.line("A");
         assertThat(writer.flush(), equalTo(C + "A" + N));
     }

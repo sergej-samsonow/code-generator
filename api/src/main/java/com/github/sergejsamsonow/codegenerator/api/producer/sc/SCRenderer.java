@@ -2,17 +2,16 @@ package com.github.sergejsamsonow.codegenerator.api.producer.sc;
 
 import com.github.sergejsamsonow.codegenerator.api.producer.Renderer;
 
-// TODO refactor rename to CodeWriterBasedRenderer
-public abstract class BaseRenderer<D> implements Renderer<D> {
+public abstract class SCRenderer<D> implements Renderer<D> {
 
     private D data;
-    private CodeWriter code;
-    private MethodCodeWriter methodCode;
+    private SCCodeConcatenator code;
+    private SCMethodCodeConcatenator methodCode;
 
-    public BaseRenderer(CodeFormat format) {
+    public SCRenderer(SCNewLineAndIndentationFormat format) {
         final StringBuilder builder = new StringBuilder();
-        code = new CodeWriter(format, 0, builder);
-        methodCode = new MethodCodeWriter(format, builder);
+        code = new SCCodeConcatenator(format, 0, builder);
+        methodCode = new SCMethodCodeConcatenator(format, builder);
     }
 
     private void setData(D data) {
@@ -31,24 +30,22 @@ public abstract class BaseRenderer<D> implements Renderer<D> {
         return data;
     }
 
-    // TODO rename to modify
-    protected void prepare() {}
+    protected void modify() {}
 
     protected void render() {}
 
-    final protected CodeWriter getCodeWriter() {
+    final protected SCCodeConcatenator getCodeWriter() {
         return code;
     }
 
-    final protected MethodCodeWriter getMethodCodeWriter() {
+    final protected SCMethodCodeConcatenator getMethodCodeWriter() {
         return methodCode;
     }
 
-    // TODO rename to modify
     @Override
     final public void modify(D data) {
         setData(data);
-        prepare();
+        modify();
         cleanUp();
     }
 

@@ -1,9 +1,9 @@
 package com.github.sergejsamsonow.codegenerator.api.producer.sc;
 
 // TODO Rename CodeWriterBasedRendererForPropertiesContainer
-public abstract class AbstractPropertyRenderer<X, D extends ContainsProperties<X>> extends BaseRenderer<D> {
+public abstract class SCRendererForPropertiesContainer<X, D extends PropertiesContainer<X>> extends SCRenderer<D> {
 
-    public AbstractPropertyRenderer(CodeFormat format) {
+    public SCRendererForPropertiesContainer(SCNewLineAndIndentationFormat format) {
         super(format);
     }
 

@@ -1,23 +1,23 @@
 package com.github.sergejsamsonow.codegenerator.api.producer.sc;
 
-public class CodeWriter {
+public class SCCodeConcatenator {
 
-    private CodeFormat format;
+    private SCNewLineAndIndentationFormat format;
 
     private int indent;
     private String shift;
     private String newline;
     private StringBuilder builder;
 
-    public CodeWriter(CodeFormat format) {
+    public SCCodeConcatenator(SCNewLineAndIndentationFormat format) {
         this(format, 0);
     }
 
-    public CodeWriter(CodeFormat format, int indent) {
+    public SCCodeConcatenator(SCNewLineAndIndentationFormat format, int indent) {
         this(format, 0, null);
     }
 
-    public CodeWriter(CodeFormat format, int indent, StringBuilder builder) {
+    public SCCodeConcatenator(SCNewLineAndIndentationFormat format, int indent, StringBuilder builder) {
         this.format = format;
         this.indent = indent;
 
@@ -35,8 +35,8 @@ public class CodeWriter {
         builder.append(data);
     }
 
-    public CodeWriter indent() {
-        return new CodeWriter(format, indent + 1, builder);
+    public SCCodeConcatenator indent() {
+        return new SCCodeConcatenator(format, indent + 1, builder);
     }
 
     public void line(String line) {

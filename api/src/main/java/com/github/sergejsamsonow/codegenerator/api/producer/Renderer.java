@@ -1,8 +1,8 @@
-package com.github.sergejsamsonow.codegenerator.producer;
+package com.github.sergejsamsonow.codegenerator.api.producer;
 
 public interface Renderer<D> {
 
-    default void prepare(D data) {}
+    default void modify(D data) {}
 
     public String render(D data);
 }

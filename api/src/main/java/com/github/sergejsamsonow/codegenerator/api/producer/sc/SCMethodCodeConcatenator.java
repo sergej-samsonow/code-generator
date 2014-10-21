@@ -1,16 +1,16 @@
 package com.github.sergejsamsonow.codegenerator.api.producer.sc;
 
-public class MethodCodeWriter {
+public class SCMethodCodeConcatenator {
 
-    private CodeWriter method;
-    private CodeWriter code;
+    private SCCodeConcatenator method;
+    private SCCodeConcatenator code;
 
-    public MethodCodeWriter(CodeFormat format) {
+    public SCMethodCodeConcatenator(SCNewLineAndIndentationFormat format) {
         this(format, null);
     }
 
-    public MethodCodeWriter(CodeFormat format, StringBuilder builder) {
-        method = new CodeWriter(format, 1, builder);
+    public SCMethodCodeConcatenator(SCNewLineAndIndentationFormat format, StringBuilder builder) {
+        method = new SCCodeConcatenator(format, 1, builder);
         code = method.indent();
     }
 
@@ -30,7 +30,7 @@ public class MethodCodeWriter {
         method.line(methodSignatureTemplate, data);
     }
 
-    public CodeWriter methodCodeWriter() {
+    public SCCodeConcatenator methodCodeWriter() {
         return code;
     }
 

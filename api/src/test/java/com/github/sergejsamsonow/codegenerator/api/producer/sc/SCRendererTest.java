@@ -11,27 +11,27 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BaseRendererTest {
+public class SCRendererTest {
 
     private static final String N = "NL";
     private static final String S = "SW";
     private static final Data D = new Data();
 
     private static class Data {}
-    private static class AccessWrapper extends BaseRenderer<Data> {
+    private static class AccessWrapper extends SCRenderer<Data> {
 
         private boolean prepared = false;
         private boolean rendered = false;
         private Data data = null;
-        private CodeWriter code = null;
-        private MethodCodeWriter methodCode = null;
+        private SCCodeConcatenator code = null;
+        private SCMethodCodeConcatenator methodCode = null;
 
-        public AccessWrapper(CodeFormat format) {
+        public AccessWrapper(SCNewLineAndIndentationFormat format) {
             super(format);
         }
 
         @Override
-        protected void prepare() {
+        protected void modify() {
             data = getData();
             prepared = true;
         }
@@ -45,18 +45,18 @@ public class BaseRendererTest {
         }
     }
 
-    private static class RenderWrapper extends BaseRenderer<Data> {
+    private static class RenderWrapper extends SCRenderer<Data> {
 
         private static final String EXPECTED = "A" + N + S + "B" + N;
 
-        public RenderWrapper(CodeFormat format) {
+        public RenderWrapper(SCNewLineAndIndentationFormat format) {
             super(format);
         }
 
         @Override
         protected void render() {
-            CodeWriter code = getCodeWriter();
-            MethodCodeWriter methodCode = getMethodCodeWriter();
+            SCCodeConcatenator code = getCodeWriter();
+            SCMethodCodeConcatenator methodCode = getMethodCodeWriter();
             code.line("A");
             methodCode.start("B");
         }
@@ -65,7 +65,7 @@ public class BaseRendererTest {
     private AccessWrapper accessWrapper;
 
     @Mock
-    private CodeFormat format;
+    private SCNewLineAndIndentationFormat format;
 
     @Before
     public void setUp() {
