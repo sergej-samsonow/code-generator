@@ -16,6 +16,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<modules>
+        <module>api</module>
+        <module>simple-parser</module>
+        <module>pojo-producer</module>
+	</modules>
+
 	<dependencies>
 	    <dependency>
 	        <groupId>junit</groupId>
@@ -38,7 +44,4 @@
 	        <version>3.3.2</version>
 	    </dependency>
 	</dependencies>
-	<modules>
-	    <module>core</module>
-	</modules>
 </project>

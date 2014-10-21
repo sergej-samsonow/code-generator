@@ -9,7 +9,7 @@
     </parent>
     <artifactId>code-generator-api</artifactId>
 
-    <name>API classes and interfaces</name>
+    <name>Code generator API</name>
 
     <dependencies>
         <dependency>
