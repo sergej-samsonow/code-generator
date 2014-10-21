@@ -8,6 +8,7 @@
     </parent>
 
     <artifactId>code-generator-simple-parser</artifactId>
+    <name>Simple parser</name>
 
     <dependencies>
         <dependency>
