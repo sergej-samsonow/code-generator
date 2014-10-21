@@ -7,7 +7,15 @@
         <artifactId>code-generator</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>api</artifactId>
+    <artifactId>code-generator-api</artifactId>
 
-    <name>Core classes</name>
+    <name>API classes and interfaces</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+    </dependencies>
 </project>
