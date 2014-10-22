@@ -26,7 +26,7 @@ Aktuelle Architektur besteht in wesentlichen aus 3 folgenden Schichten
 1. Parser -  extrahiert eine Datenstrukturbeschreibung aus eine "Metasprache"
    und übergibt diese an Producer Schicht. 
 2. Producer - nimmt Datenstrukturbeschreibung entgegen und generiert daraus 
-   Programmcode und Teilpfad für Writer Schicht
+   Programmcode und und Teilpfad von Programmcodedatei für die Writer Schicht
 3. Writer -  ist die letzte Schicht und ist für die Ausgabe von generierten
    Programmcode verantwortlich (Standardausgabe oder Dateisystem)
 
