@@ -21,7 +21,7 @@ public class Fields extends SCRendererForPropertiesContainer<PojoProperty, PojoB
     }
 
     @Override
-    protected void writeAfterPropertyIteration() {
+    protected void writeAfterPropertiesIteration() {
         getCodeWriter().emptyNewLine();
     }
 }

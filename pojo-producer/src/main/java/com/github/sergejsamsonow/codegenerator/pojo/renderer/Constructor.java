@@ -13,7 +13,7 @@ public class Constructor extends SCRendererForPropertiesContainer<PojoProperty, 
     }
 
     @Override
-    protected void writeBeforePropertyIteration() {
+    protected void writeBeforePropertiesIteration() {
         SCMethodCodeConcatenator constructor = getMethodCodeWriter();
         constructor.start("public %s() {", getData().getClassName());
     }
@@ -25,7 +25,7 @@ public class Constructor extends SCRendererForPropertiesContainer<PojoProperty, 
     }
 
     @Override
-    protected void writeAfterPropertyIteration() {
+    protected void writeAfterPropertiesIteration() {
         SCMethodCodeConcatenator constructor = getMethodCodeWriter();
         constructor.end();
         constructor.emptyNewLine();

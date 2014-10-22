@@ -3,7 +3,6 @@ package com.github.sergejsamsonow.codegenerator.api.producer;
 import java.util.Collections;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 
-// TODO Partial renderer based producer
 abstract public class PartialRendererBasedProducer<D, P> implements ProducerAccess<P> {
 
     private Renderer<D>[] renderers;
