@@ -5,7 +5,7 @@ werden dabei zu eine Gesamtausgabe zusammengefügt. Die überschreibende Klasse
 muss lediglich die Methoden transform und subpath bereitstellen.
 
 * ```transform(P parsed) : D``` - Wandelt von Parser kommendes Model in eine 
-von Producer Model.
+Producer Model.
 * ```subpath(D data) : String``` - Generiert Teilpfad String (wo befindet sich die Datei) Teilpfad ist dabei relativ.
 
 ![Ablauf](src/site/resources/sequence-partial-renderer.png)
