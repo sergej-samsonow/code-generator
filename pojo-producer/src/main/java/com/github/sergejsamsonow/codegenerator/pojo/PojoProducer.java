@@ -22,8 +22,6 @@ import com.github.sergejsamsonow.codegenerator.pojo.renderer.Setter;
 
 public class PojoProducer extends PartialRendererBasedProducer<PojoBean, ParsedBean> {
 
-    private WriterAccess writer;
-
     public PojoProducer(WriterAccess writer, SCNewLineAndIndentationFormat format) {
         this(writer,
             new ClassHeader(format),
@@ -36,8 +34,7 @@ public class PojoProducer extends PartialRendererBasedProducer<PojoBean, ParsedB
 
     @SafeVarargs
     public PojoProducer(WriterAccess writer, Renderer<PojoBean>... renderers) {
-        super(renderers);
-        this.writer = writer;
+        super(writer, renderers);
     }
 
     @Override
@@ -49,11 +46,7 @@ public class PojoProducer extends PartialRendererBasedProducer<PojoBean, ParsedB
     }
 
     @Override
-    protected void write(PojoBean data, String code) {
-        writer.write(subpath(data), code);
-    }
-
-    private String subpath(PojoBean data) {
+    protected String subpath(PojoBean data) {
         String namespace = data.getPackageName();
         String className = data.getClassName();
         String subPath = namespace.replace(".", "/");

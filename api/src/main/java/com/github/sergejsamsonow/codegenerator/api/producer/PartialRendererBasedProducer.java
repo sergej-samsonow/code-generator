@@ -1,32 +1,35 @@
 package com.github.sergejsamsonow.codegenerator.api.producer;
 
-import java.util.Collections;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
+import com.github.sergejsamsonow.codegenerator.api.WriterAccess;
 
 abstract public class PartialRendererBasedProducer<D, P> implements ProducerAccess<P> {
 
-    private Renderer<D>[] renderers;
+    private WriterAccess writerAccess;
+    private Renderer<D>[] renders;
 
     @SafeVarargs
-    public PartialRendererBasedProducer(Renderer<D>... renderers) {
-        this.renderers = renderers;
+    public PartialRendererBasedProducer(WriterAccess writerAccess, Renderer<D>... renders) {
+        if (writerAccess == null)
+            throw new IllegalArgumentException("Writer access is null!");
+        if (renders == null)
+            throw new IllegalArgumentException("Renders list is null!");
+        this.writerAccess = writerAccess;
+        this.renders = renders;
     }
 
-    @SuppressWarnings("unchecked")
     private Renderer<D>[] getRenderers() {
-        if (renderers == null)
-            this.renderers = (Renderer<D>[]) Collections.emptyList().toArray();
-        return renderers;
+        return renders;
     }
 
     @Override
     public void newItem(P parsed) {
         D data = transform(parsed);
-        modify(data);
-        write(data, code(data));
+        writerAccess.write(subpath(data), render(data));
     }
 
-    private String code(D data) {
+    private String render(D data) {
+        modify(data);
         StringBuilder output = new StringBuilder();
         for (Renderer<D> renderer : getRenderers())
             output.append(renderer.render(data));
@@ -36,10 +39,9 @@ abstract public class PartialRendererBasedProducer<D, P> implements ProducerAcce
     private void modify(D data) {
         for (Renderer<D> renderer : getRenderers())
             renderer.modify(data);
-
     }
 
     abstract protected D transform(P parsed);
 
-    abstract protected void write(D data, String code);
+    abstract protected String subpath(D data);
 }

@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.api.WriterAccess;
 import com.github.sergejsamsonow.codegenerator.api.producer.Renderer;
@@ -47,14 +46,12 @@ public class PojoProducerTest {
 
     @Test
     public void testTransform() throws Exception {
-        PojoBean transformed = producer.transform(parsedBean);
-        assertThat(transformed, equalTo(pojoBean));
+        assertThat(producer.transform(parsedBean), equalTo(pojoBean));
     }
 
     @Test
     public void testWrite() throws Exception {
-        producer.write(pojoBean, "AB");
-        Mockito.verify(writer).write("frontend/simple/Form.java", "AB");
+        assertThat(producer.subpath(pojoBean), equalTo("frontend/simple/Form.java"));
     }
 
 }
