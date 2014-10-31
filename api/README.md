@@ -38,10 +38,12 @@ Besondere Methoden sind:
 Einrückung mehr relativ zu erzeugenden Instance.
 * ```flush() : String``` - Gibt aktuellen buffer zurück und leert es gleichzeitig.
 
+
 ##### SCNewLineAndIndentationFormat
 SCNewLineAndIndentationFormat ist eine Klasse welches die Art und Weise 
 regelt wie Programmcode eingerückt wird und welche Zeichenkette als newline
 verwendet werden soll.
+
 
 ##### SCRenderer
 SCRenderer ist eine Basis Implementierung von Renderer Interface das intern
@@ -59,6 +61,7 @@ können also beide gleichzeitig genutzt werden.
 Die flush() Methode von SCCodeConcatenator und SCMethodCodeCooncatenator
 wird im SCRenderer am Ende der render(D data) Methode aufgerufen und
 sollte in abgeleiteten Klassen nicht aufgerufen werden.
+
 
 ##### SCRendererForPropertiesContainer und ProprertiesContainer
 SCRendererForPropertiesContainer und ProprertiesContainer stellen eine 
