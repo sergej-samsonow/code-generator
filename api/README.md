@@ -7,7 +7,7 @@ Producer Paket stellt eine weitere Schnittstelle [Renderer][5] bereit.
 ![Überblick](src/site/resources/api.png)
 
 ## PartialRendererBasedProducer
-Arbeitet mit eine Liste von "Renderer" um Codegenerierung zu bewältigen 
+[PartialRendererBasedProducer][6] arbeitet mit eine Liste von "Renderer" um Codegenerierung zu bewältigen 
 (z.B. Renderer für Setter Methoden). Die  Ausgaben von einzelnen "Renderer"
 werden dabei zu eine Gesamtausgabe zusammengefügt. Die überschreibende Klasse 
 muss lediglich die Methoden transform und subpath bereitstellen.
@@ -91,3 +91,4 @@ Properties Liste da.
 [3]: src/main/java/com/github/sergejsamsonow/codegenerator/api/writer/FileWriter.java
 [4]: src/main/java/com/github/sergejsamsonow/codegenerator/api/writer/StdOutWriter.java
 [5]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/Renderer.java
+[6]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/PartialRendererBasedProducer.java
