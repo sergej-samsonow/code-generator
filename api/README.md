@@ -55,7 +55,7 @@ verwendet werden soll.
 
 ##### SCRenderer
 [SCRenderer][10] ist eine Basis Implementierung von [Renderer][5] Interface das intern
-[SCCodeConcatenator][7] und [SCMethodCodeCooncatenator][8] nutzt. Um diese Klasse
+[SCCodeConcatenator][7] und [SCMethodCodeConcatenator][8] nutzt. Um diese Klasse
 zu nutzen muss man die Methoden modify() und render() überschreiben
 (man kann beide oder nur eine davon überschreiben je nachdem was man gerade
 braucht).  Ausserdem stellt diese Klasse die "code writer" (SCCodeConcatenator
@@ -93,7 +93,7 @@ Properties Liste da.
 [5]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/Renderer.java
 [6]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/PartialRendererBasedProducer.java
 [7]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCCodeConcatenator.java
-[8]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCMethodCodeCooncatenator.java
+[8]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCMethodCodeConcatenator.java
 [9]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCNewLineAndIndentationFormat.java
 [10]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRenderer.java
 [11]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRendererForPropertiesContainer.java
