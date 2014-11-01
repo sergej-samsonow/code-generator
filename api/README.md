@@ -26,7 +26,7 @@ impliziet es handelt sich also um ein Rendering System.
 ![Überblick](src/site/resources/sc-renderer.png)
 
 ##### SCCodeConcatenator und SCMethodCodeCooncatenator
-SCCodeConcatenator und SCMethodCodeCooncatenator sind sozusagen "StringBuilder"
+[SCCodeConcatenator][7] und [SCMethodCodeCooncatenator][8] sind sozusagen "StringBuilder"
 die auf Generierung von Programmcode angepasst wurden. 
 
 In wesentlichen vereinfachen diese Klassen Arbeit mit Einrückungen und
@@ -48,14 +48,14 @@ Einrückung mehr relativ zu erzeugenden Instance.
 
 
 ##### SCNewLineAndIndentationFormat
-SCNewLineAndIndentationFormat ist eine Klasse welches die Art und Weise 
+[SCNewLineAndIndentationFormat][9] ist eine Klasse welches die Art und Weise 
 regelt wie Programmcode eingerückt wird und welche Zeichenkette als newline
 verwendet werden soll.
 
 
 ##### SCRenderer
-SCRenderer ist eine Basis Implementierung von Renderer Interface das intern
-SCCodeConcatenator und SCMethodCodeCooncatenator nutzt. Um diese Klasse
+[SCRenderer][10] ist eine Basis Implementierung von [Renderer][5] Interface das intern
+[SCCodeConcatenator][7] und [SCMethodCodeCooncatenator][8] nutzt. Um diese Klasse
 zu nutzen muss man die Methoden modify() und render() überschreiben
 (man kann beide oder nur eine davon überschreiben je nachdem was man gerade
 braucht).  Ausserdem stellt diese Klasse die "code writer" (SCCodeConcatenator
@@ -72,8 +72,8 @@ sollte in abgeleiteten Klassen nicht aufgerufen werden.
 
 
 ##### SCRendererForPropertiesContainer und ProprertiesContainer
-SCRendererForPropertiesContainer und ProprertiesContainer stellen eine 
-Erweiterung von SCRenderer an und sind speziel für die Models zugeschnitten
+[SCRendererForPropertiesContainer][11] und [ProprertiesContainer][12] stellen eine 
+Erweiterung von [SCRenderer][10] an und sind speziel für die Models zugeschnitten
 welches ein Liste mit Propertiese besitzt. Um dieses Helfer nutzen zu können
 muss an den Renderer übergebendes Model PropertiesContainer Interface
 implementieren danach kann kann man bei Bedarf die folgenden 3 Methoden
@@ -92,3 +92,9 @@ Properties Liste da.
 [4]: src/main/java/com/github/sergejsamsonow/codegenerator/api/writer/StdOutWriter.java
 [5]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/Renderer.java
 [6]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/PartialRendererBasedProducer.java
+[7]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCCodeConcatenator.java
+[8]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCMethodCodeCooncatenator.java
+[9]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCNewLineAndIndentationFormat.java
+[10]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRenderer.java
+[11]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRendererForPropertiesContainer.java
+[12]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/ProprertiesContainer.java
