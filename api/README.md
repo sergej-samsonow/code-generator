@@ -86,8 +86,8 @@ implementieren danach kann kann man bei Bedarf die folgenden 3 Methoden
 In wesentlichen stellt SCRendererForPropertiesContainer eine Iterateion über
 Properties Liste da.
 
-[1]: code-generator-api/src/main/java/com/github/sergejsamsonow/codegenerator/api/ProducerAccess.java
-[2]: code-generator-api/src/main/java/com/github/sergejsamsonow/codegenerator/api/WriterAccess.java
-[3]: code-generator-api/src/main/java/com/github/sergejsamsonow/codegenerator/api/writer/FileWriter.java
-[4]: code-generator-api/src/main/java/com/github/sergejsamsonow/codegenerator/api/writer/StdOutWriter.java
-[5]: code-generator-api/src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/Renderer.java
+[1]: src/main/java/com/github/sergejsamsonow/codegenerator/api/ProducerAccess.java
+[2]: src/main/java/com/github/sergejsamsonow/codegenerator/api/WriterAccess.java
+[3]: src/main/java/com/github/sergejsamsonow/codegenerator/api/writer/FileWriter.java
+[4]: src/main/java/com/github/sergejsamsonow/codegenerator/api/writer/StdOutWriter.java
+[5]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/Renderer.java
