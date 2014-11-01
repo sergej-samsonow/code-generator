@@ -72,7 +72,7 @@ sollte in abgeleiteten Klassen nicht aufgerufen werden.
 
 
 ##### SCRendererForPropertiesContainer und ProprertiesContainer
-[SCRendererForPropertiesContainer][11] und [ProprertiesContainer][12] stellen eine 
+[SCRendererForPropertiesContainer][11] und [PropertiesContainer][12] stellen eine 
 Erweiterung von [SCRenderer][10] an und sind speziel für die Models zugeschnitten
 welches ein Liste mit Propertiese besitzt. Um dieses Helfer nutzen zu können
 muss an den Renderer übergebendes Model PropertiesContainer Interface
@@ -97,4 +97,4 @@ Properties Liste da.
 [9]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCNewLineAndIndentationFormat.java
 [10]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRenderer.java
 [11]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRendererForPropertiesContainer.java
-[12]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/ProprertiesContainer.java
+[12]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/PropertiesContainer.java
