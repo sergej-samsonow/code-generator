@@ -33,4 +33,4 @@ Aktuelle Architektur besteht in wesentlichen aus 3 folgenden Schichten
 ## Komponente:
 * [code-generator-api](api) - Entwicklungs API
 * code-generator-simple-parser - Beispiel Parser implementierung.
-* code-generator-pojo-producer - Plain old java objects code generator.
+* [code-generator-pojo-producer](pojo-producer) - Plain old java objects code generator.
