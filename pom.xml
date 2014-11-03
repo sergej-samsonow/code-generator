@@ -17,17 +17,6 @@
         <tag>HEAD</tag>
     </scm>
 
-    <distributionManagement>
-        <repository>
-            <id>tmp-releases</id>
-            <url>file:///j:/tmp/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>tmp-snapshots</id>
-            <url>file:///j:/tmp/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <issueManagement>
         <url>https://github.com/sergej-samsonow/code-generator/issues</url>
         <system>GitHub Issues</system>
@@ -75,14 +64,5 @@
             <version>3.3.2</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.1</version>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
