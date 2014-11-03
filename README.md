@@ -1,4 +1,4 @@
-code-generator [![Build state](https://travis-ci.org/sergej-samsonow/code-generator.svg)](https://travis-ci.org/sergej-samsonow/code-generator)
+[![Build state](https://travis-ci.org/sergej-samsonow/code-generator.svg)](https://travis-ci.org/sergej-samsonow/code-generator) Code generator tools
 ==============
 
 Bunch of tools for code generation.
