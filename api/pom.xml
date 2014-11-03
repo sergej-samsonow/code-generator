@@ -5,10 +5,10 @@
     <parent>
         <groupId>com.github.sergejsamsonow</groupId>
         <artifactId>code-generator</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>code-generator-api</artifactId>
 
+    <artifactId>code-generator-api</artifactId>
     <name>Code generator API</name>
 
     <dependencies>

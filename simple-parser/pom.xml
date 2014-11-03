@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.github.sergejsamsonow</groupId>
         <artifactId>code-generator</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>code-generator-simple-parser</artifactId>
@@ -14,7 +14,7 @@
         <dependency>
             <groupId>com.github.sergejsamsonow</groupId>
             <artifactId>code-generator-api</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
