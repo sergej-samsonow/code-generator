@@ -35,8 +35,9 @@ public class ClassHeader extends SCRenderer<PojoBean> {
 
     private void writeImports() {
         Set<String> imports = data.getImports();
-        if (imports.isEmpty())
+        if (imports.isEmpty()) {
             return;
+        }
         writer.emptyNewLine();
         imports.stream().sorted().forEach(current -> writer.line("import %s;", current));
     }

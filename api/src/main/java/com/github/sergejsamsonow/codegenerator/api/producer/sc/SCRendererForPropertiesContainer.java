@@ -20,8 +20,9 @@ public abstract class SCRendererForPropertiesContainer<X, D extends PropertiesCo
     }
 
     private void iterateProperties() {
-        for (X property : getData().getProperties())
+        for (X property : getData().getProperties()) {
             writePropertyCode(property);
+        }
     }
 
 }

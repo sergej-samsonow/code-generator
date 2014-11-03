@@ -27,8 +27,9 @@ public class ParsedProperty {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ParsedProperty))
+        if (!(object instanceof ParsedProperty)) {
             return false;
+        }
         ParsedProperty casted = (ParsedProperty) object;
         return Objects.equals(getName(), casted.getName())
             && Objects.equals(getType(), casted.getType());

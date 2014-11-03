@@ -35,8 +35,9 @@ public class ParsedBean {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ParsedBean))
+        if (!(object instanceof ParsedBean)) {
             return false;
+        }
         ParsedBean casted = (ParsedBean) object;
         return Objects.equals(getNamespace(), casted.getNamespace())
             && Objects.equals(getType(), casted.getType())

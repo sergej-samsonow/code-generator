@@ -39,8 +39,9 @@ public class SCNewLineAndIndentationFormat {
 
     private static String shiftSequence(int count) {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             builder.append(" ");
+        }
         return builder.toString();
     }
 

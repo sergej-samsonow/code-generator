@@ -26,12 +26,15 @@ public class SimplePojoProperty implements PojoProperty {
     protected void createTypeRelatedEntries(String parsedType) {
         importedTypes = new HashSet<>();
         list = startsWith(parsedType, "List<");
-        if (list)
+        if (list) {
             createListType(parsedType);
-        else
+        }
+        else {
             createScalarType(parsedType);
-        if (importedTypes.isEmpty())
+        }
+        if (importedTypes.isEmpty()) {
             importedTypes = Collections.emptySet();
+        }
     }
 
     protected void createScalarType(String parsedType) {
@@ -77,8 +80,9 @@ public class SimplePojoProperty implements PojoProperty {
             importedTypes.add(content);
             declarationType = substringAfterLast(content, ".");
         }
-        else
+        else {
             declarationType = content;
+        }
     }
 
     protected String extractListContentType(String parsedType) {
@@ -132,8 +136,9 @@ public class SimplePojoProperty implements PojoProperty {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof PojoProperty))
+        if (!(object instanceof PojoProperty)) {
             return false;
+        }
         PojoProperty casted = (PojoProperty) object;
         return Objects.equals(isList(), casted.isList())
             && Objects.equals(getInitCode(), casted.getInitCode())

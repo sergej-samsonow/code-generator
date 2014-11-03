@@ -17,8 +17,9 @@ public class SimplePojoBean implements PojoBean {
         this.className = className;
         this.properties = properties;
         this.imports = new HashSet<>();
-        for (PojoProperty property : properties)
+        for (PojoProperty property : properties) {
             imports.addAll(property.getImportedTypes());
+        }
     }
 
     @Override
@@ -53,8 +54,9 @@ public class SimplePojoBean implements PojoBean {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof PojoBean))
+        if (!(object instanceof PojoBean)) {
             return false;
+        }
         PojoBean casted = (PojoBean) object;
         return Objects.equals(getPackageName(), casted.getPackageName())
             && Objects.equals(getClassName(), casted.getClassName())

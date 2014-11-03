@@ -20,6 +20,7 @@ public class PartialRendererBasedProducerTest {
     private static final ParserData INPUT_D = new ParserData();
 
     private static class ParserData {}
+
     private static class RendererData {
 
         public void transformInvoced() {}
@@ -30,6 +31,7 @@ public class PartialRendererBasedProducerTest {
 
         public void renderRenderInvoced() {}
     }
+
     private static class Wrapper extends PartialRendererBasedProducer<RendererData, ParserData> {
 
         private RendererData data;

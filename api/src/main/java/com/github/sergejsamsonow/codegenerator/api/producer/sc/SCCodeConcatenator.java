@@ -20,14 +20,13 @@ public class SCCodeConcatenator {
     public SCCodeConcatenator(SCNewLineAndIndentationFormat format, int indent, StringBuilder builder) {
         this.format = format;
         this.indent = indent;
-
         this.builder = builder == null ? new StringBuilder() : builder;
-
         this.newline = format.newLineSequence();
 
         StringBuilder sequenceBuilder = new StringBuilder();
-        for (int i = 0; i < indent; i++)
+        for (int i = 0; i < indent; i++) {
             sequenceBuilder.append(format.shiftSequence());
+        }
         this.shift = sequenceBuilder.toString();
     }
 

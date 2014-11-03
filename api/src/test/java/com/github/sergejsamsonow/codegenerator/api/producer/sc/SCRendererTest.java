@@ -18,6 +18,7 @@ public class SCRendererTest {
     private static final Data D = new Data();
 
     private static class Data {}
+
     private static class AccessWrapper extends SCRenderer<Data> {
 
         private boolean prepared = false;

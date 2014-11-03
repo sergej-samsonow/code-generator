@@ -29,12 +29,15 @@ public class SimpleParser {
         namespace = "";
         for (String line : content.split("\\r\\n|\\n")) {
             resetMatcher();
-            if (namspaceDeclarationFound(line))
+            if (namspaceDeclarationFound(line)) {
                 processNamespaceDeclaration();
-            else if (beanDeclarationFound(line))
+            }
+            else if (beanDeclarationFound(line)) {
                 processBeanDeclaration();
-            else if (propertyDeclarationFound(line))
+            }
+            else if (propertyDeclarationFound(line)) {
                 processPropertyDeclaration();
+            }
         }
         packBeanIfExists();
     }
