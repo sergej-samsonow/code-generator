@@ -20,7 +20,7 @@
     <distributionManagement>
         <repository>
             <id>bintray</id>
-            <url>https://api.bintray.com/maven/sergej-samsonow/code-generator/package</url>
+            <url>https://api.bintray.com/maven/sergej-samsonow/maven/code-generator</url>
         </repository>
     </distributionManagement>
 
