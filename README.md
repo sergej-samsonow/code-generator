@@ -1,5 +1,7 @@
-[![Build state](https://travis-ci.org/sergej-samsonow/code-generator.svg)](https://travis-ci.org/sergej-samsonow/code-generator) Code generator tools
-==============
+Code generator tools
+====================
+
+[![Build state](https://travis-ci.org/sergej-samsonow/code-generator.svg)](https://travis-ci.org/sergej-samsonow/code-generator)
 
 Bunch of tools for code generation.
 Fill free to translate this readme into english language
