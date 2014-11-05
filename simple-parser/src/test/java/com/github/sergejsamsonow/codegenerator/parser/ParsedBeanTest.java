@@ -1,6 +1,7 @@
 package com.github.sergejsamsonow.codegenerator.parser;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -55,7 +56,7 @@ public class ParsedBeanTest {
 
     @Test
     public void testHashCode() throws Exception {
-        int expected = Objects.hash(NAMESPACE, TYPE, Collections.emptyList());
+        int expected = Objects.hash(NAMESPACE, TYPE, Collections.emptyList(), "");
         ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
         assertThat(bean.hashCode(), equalTo(expected));
     }
@@ -66,4 +67,24 @@ public class ParsedBeanTest {
         ParsedBean b = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
         assertThat(a.equals(b), equalTo(true));
     }
+
+    @Test
+    public void testEqualsNotEquals() throws Exception {
+        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        ParsedBean b = new ParsedBean(NAMESPACE, TYPE, "A", Collections.emptyList());
+        assertThat(a.equals(b), not(equalTo(true)));
+    }
+
+    @Test
+    public void testGetParentTypeOnEmptyType() throws Exception {
+        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        assertThat(a.getParentType(), equalTo(""));
+    }
+
+    @Test
+    public void testGetParentTypeConvertToEmptyString() throws Exception {
+        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, null, Collections.emptyList());
+        assertThat(a.getParentType(), equalTo(""));
+    }
+
 }

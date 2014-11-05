@@ -8,11 +8,17 @@ public class ParsedBean {
 
     private String namespace;
     private String type;
+    private String parentType;
     private List<ParsedProperty> properties;
 
     public ParsedBean(String namespace, String type, List<ParsedProperty> properties) {
+        this(namespace, type, "", properties);
+    }
+
+    public ParsedBean(String namespace, String type, String parentType, List<ParsedProperty> properties) {
         this.namespace = namespace;
         this.type = type;
+        this.parentType = parentType == null ? "" : parentType;
         this.properties = new ArrayList<>(properties);
     }
 
@@ -24,13 +30,17 @@ public class ParsedBean {
         return type;
     }
 
+    public String getParentType() {
+        return parentType;
+    }
+
     public List<ParsedProperty> getProperties() {
         return new ArrayList<>(properties);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNamespace(), getType(), getProperties());
+        return Objects.hash(getNamespace(), getType(), getProperties(), getParentType());
     }
 
     @Override
@@ -41,6 +51,7 @@ public class ParsedBean {
         ParsedBean casted = (ParsedBean) object;
         return Objects.equals(getNamespace(), casted.getNamespace())
             && Objects.equals(getType(), casted.getType())
+            && Objects.equals(getParentType(), casted.getParentType())
             && Objects.equals(getProperties(), casted.getProperties());
     }
 
@@ -51,6 +62,8 @@ public class ParsedBean {
         builder.append("namespace: " + getNamespace());
         builder.append(", ");
         builder.append("type: " + getType());
+        builder.append(", ");
+        builder.append("parentType: " + getParentType());
         builder.append(", ");
         builder.append("properties: " + Objects.toString(getProperties()));
         builder.append(")");
