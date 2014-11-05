@@ -1,6 +1,7 @@
 package com.github.sergejsamsonow.codegenerator.pojo;
 
 import static java.util.Arrays.asList;
+import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,17 +21,37 @@ public class IntegrationPojoProducerTest {
 
     private PojoProducer producer;
 
-    private ParsedBean bean;
-
     @Mock
     private WriterAccess writer;
 
+    @Mock
+    private ParsedProperty place;
+
+    @Mock
+    private ParsedProperty age;
+
+    @Mock
+    private ParsedProperty attributes;
+
+    @Mock
+    private ParsedBean bean;
+
     @Before
     public void setUp() {
-        ParsedProperty place = new ParsedProperty("place", "String");
-        ParsedProperty age = new ParsedProperty("age", "Integer");
-        ParsedProperty attributes = new ParsedProperty("attributes", "List<fragments.Attribute>");
-        bean = new ParsedBean("frontend", "Form", "", asList(place, age, attributes));
+        when(place.getName()).thenReturn("place");
+        when(place.getType()).thenReturn("String");
+
+        when(age.getName()).thenReturn("age");
+        when(age.getType()).thenReturn("Integer");
+
+        when(attributes.getName()).thenReturn("attributes");
+        when(attributes.getType()).thenReturn("List<fragments.Attribute>");
+
+        when(bean.getNamespace()).thenReturn("frontend");
+        when(bean.getType()).thenReturn("Form");
+        when(bean.getParentType()).thenReturn("");
+        when(bean.getProperties()).thenReturn(asList(place, age, attributes));
+
         producer = new PojoProducer(writer, FORMAT);
     }
 

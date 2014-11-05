@@ -13,16 +13,16 @@ import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleParserTest {
 
-    private static final ParsedBean PAGE = new ParsedBean("frontend", "Page", "Content", Arrays.asList(
-        new ParsedProperty("header", "Header"),
-        new ParsedProperty("message", "String"),
-        new ParsedProperty("footer", "Footer")));
+    private static final ParsedBean PAGE = new SimpleParsedBean("frontend", "Page", "Content", Arrays.asList(
+        new SimpleParsedProperty("header", "Header"),
+        new SimpleParsedProperty("message", "String"),
+        new SimpleParsedProperty("footer", "Footer")));
 
-    private static final ParsedBean HEADER = new ParsedBean("frontend", "Header", null, Arrays.asList(new ParsedProperty(
+    private static final ParsedBean HEADER = new SimpleParsedBean("frontend", "Header", null, Arrays.asList(new SimpleParsedProperty(
         "content",
         "String")));
 
-    private static final ParsedBean FOOTER = new ParsedBean("frontend", "Footer", null, Arrays.asList(new ParsedProperty(
+    private static final ParsedBean FOOTER = new SimpleParsedBean("frontend", "Footer", null, Arrays.asList(new SimpleParsedProperty(
         "content",
         "String")));
 

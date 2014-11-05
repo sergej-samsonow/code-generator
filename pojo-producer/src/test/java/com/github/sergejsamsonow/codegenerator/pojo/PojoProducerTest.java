@@ -3,6 +3,7 @@ package com.github.sergejsamsonow.codegenerator.pojo;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,16 +32,26 @@ public class PojoProducerTest {
     @Mock
     private Renderer<PojoBean> renderer;
 
+    @Mock
     private ParsedBean parsedBean;
+
+    @Mock
     private ParsedProperty parsedProperty;
+
     private PojoBean pojoBean;
     private PojoProperty pojoProperty;
 
     @Before
     public void setUp() {
+        when(parsedProperty.getName()).thenReturn("name");
+        when(parsedProperty.getType()).thenReturn("String");
+
+        when(parsedBean.getNamespace()).thenReturn(PACKAGE);
+        when(parsedBean.getType()).thenReturn(CLASS);
+        when(parsedBean.getParentType()).thenReturn(PARENT);
+        when(parsedBean.getProperties()).thenReturn(asList(parsedProperty));
+
         producer = new PojoProducer(writer, renderer);
-        parsedProperty = new ParsedProperty("name", "String");
-        parsedBean = new ParsedBean(PACKAGE, CLASS, PARENT, asList(parsedProperty));
         pojoProperty = new SimplePojoProperty(parsedProperty.getName(), parsedProperty.getType());
         pojoBean = new SimplePojoBean(parsedBean.getNamespace(), parsedBean.getType(), PARENT, asList(pojoProperty));
     }

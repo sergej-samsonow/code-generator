@@ -80,13 +80,13 @@ public class SimpleParser {
     }
 
     private void processPropertyDeclaration() {
-        properties.add(new ParsedProperty(
+        properties.add(new SimpleParsedProperty(
             matcher.group(PROPERTY_NAME_CONTENT), matcher.group(PROPERTY_TYPE_CONTENT)));
     }
 
     private void packBeanIfExists() {
         if (beanType != null) {
-            producer.newItem(new ParsedBean(namespace, beanType, parentType, new ArrayList<>(properties)));
+            producer.newItem(new SimpleParsedBean(namespace, beanType, parentType, new ArrayList<>(properties)));
             beanType = null;
             parentType = null;
             properties.clear();
