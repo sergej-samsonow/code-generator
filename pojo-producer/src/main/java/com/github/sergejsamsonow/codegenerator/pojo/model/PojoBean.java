@@ -9,6 +9,8 @@ public interface PojoBean extends PropertiesContainer<PojoProperty> {
 
     public String getClassName();
 
+    public String getParentClass();
+
     public Set<String> getImports();
 
     public void addToImports(String item);

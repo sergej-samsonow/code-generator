@@ -1,5 +1,6 @@
 package com.github.sergejsamsonow.codegenerator.pojo.model;
 
+import static org.apache.commons.lang3.StringUtils.substringAfterLast;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -9,14 +10,20 @@ public class SimplePojoBean implements PojoBean {
 
     private String packageName;
     private String className;
+    private String parentClass;
     private List<PojoProperty> properties;
     private Set<String> imports;
 
-    public SimplePojoBean(String packageName, String className, List<PojoProperty> properties) {
+    public SimplePojoBean(String packageName, String className, String parentClass, List<PojoProperty> properties) {
         this.packageName = packageName;
+        this.imports = new HashSet<>();
         this.className = className;
         this.properties = properties;
-        this.imports = new HashSet<>();
+        this.parentClass = parentClass == null ? "" : parentClass;
+        if (this.parentClass.matches("^[a-z].*")) {
+            imports.add(this.parentClass);
+            this.parentClass = substringAfterLast(this.parentClass, ".");
+        }
         for (PojoProperty property : properties) {
             imports.addAll(property.getImportedTypes());
         }
@@ -30,6 +37,11 @@ public class SimplePojoBean implements PojoBean {
     @Override
     public String getClassName() {
         return className;
+    }
+
+    @Override
+    public String getParentClass() {
+        return parentClass;
     }
 
     @Override
@@ -60,13 +72,14 @@ public class SimplePojoBean implements PojoBean {
         PojoBean casted = (PojoBean) object;
         return Objects.equals(getPackageName(), casted.getPackageName())
             && Objects.equals(getClassName(), casted.getClassName())
+            && Objects.equals(getParentClass(), casted.getParentClass())
             && Objects.equals(getImports(), casted.getImports())
             && Objects.equals(getProperties(), casted.getProperties());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPackageName(), getClassName(), getImports(), getProperties());
+        return Objects.hash(getPackageName(), getClassName(), getParentClass(), getImports(), getProperties());
     }
 
     @Override
@@ -76,6 +89,8 @@ public class SimplePojoBean implements PojoBean {
         result.append("packageName: " + getPackageName());
         result.append(", ");
         result.append("className: " + getClassName());
+        result.append(", ");
+        result.append("parentClass: " + getParentClass());
         result.append(", ");
         result.append("imports: " + Objects.toString(getImports()));
         result.append(", ");
