@@ -43,7 +43,7 @@ public class PojoProducer extends PartialRendererBasedProducer<PojoBean, ParsedB
         for (ParsedProperty property : parsed.getProperties()) {
             properties.add(new SimplePojoProperty(property.getName(), property.getType()));
         }
-        return new SimplePojoBean(parsed.getNamespace(), parsed.getType(), properties);
+        return new SimplePojoBean(parsed.getNamespace(), parsed.getType(), parsed.getParentType(), properties);
     }
 
     @Override

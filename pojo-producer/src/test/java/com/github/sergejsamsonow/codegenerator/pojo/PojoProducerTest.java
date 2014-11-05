@@ -21,7 +21,8 @@ import com.github.sergejsamsonow.codegenerator.pojo.model.SimplePojoProperty;
 public class PojoProducerTest {
 
     private static final String PACKAGE = "frontend.simple";
-    private static final String CLASS = "form";
+    private static final String CLASS = "Form";
+    private static final String PARENT = "Parent";
     private PojoProducer producer;
 
     @Mock
@@ -39,9 +40,9 @@ public class PojoProducerTest {
     public void setUp() {
         producer = new PojoProducer(writer, renderer);
         parsedProperty = new ParsedProperty("name", "String");
-        parsedBean = new ParsedBean(PACKAGE, CLASS, asList(parsedProperty));
+        parsedBean = new ParsedBean(PACKAGE, CLASS, PARENT, asList(parsedProperty));
         pojoProperty = new SimplePojoProperty(parsedProperty.getName(), parsedProperty.getType());
-        pojoBean = new SimplePojoBean(parsedBean.getNamespace(), parsedBean.getType(), asList(pojoProperty));
+        pojoBean = new SimplePojoBean(parsedBean.getNamespace(), parsedBean.getType(), PARENT, asList(pojoProperty));
     }
 
     @Test
@@ -50,7 +51,7 @@ public class PojoProducerTest {
     }
 
     @Test
-    public void testWrite() throws Exception {
+    public void testSubpath() throws Exception {
         assertThat(producer.subpath(pojoBean), equalTo("frontend/simple/Form.java"));
     }
 
