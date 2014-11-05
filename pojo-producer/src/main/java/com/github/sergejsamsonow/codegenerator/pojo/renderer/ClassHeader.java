@@ -1,5 +1,6 @@
 package com.github.sergejsamsonow.codegenerator.pojo.renderer;
 
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 import java.util.Set;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCCodeConcatenator;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
@@ -44,7 +45,14 @@ public class ClassHeader extends SCRenderer<PojoBean> {
 
     private void writeClassDeclaration() {
         writer.emptyNewLine();
-        writer.line("public class %s {", data.getClassName());
+        String parentClassName = data.getParentClass();
+        String className = data.getClassName();
+        if (isEmpty(parentClassName)) {
+            writer.line("public class %s {", className);
+        }
+        else {
+            writer.line("public class %s extends %s {", className, parentClassName);
+        }
         writer.emptyNewLine();
     }
 

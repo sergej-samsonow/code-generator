@@ -57,4 +57,11 @@ public class ClassHeaderTest {
             Content.of("/pojo-renderer/ClassHeader-SortedImports.txt")));
     }
 
+    @Test
+    public void testRenderParentClass() throws Exception {
+        when(bean.getImports()).thenReturn(Collections.emptySet());
+        when(bean.getParentClass()).thenReturn("Parent");
+        assertThat(renderer.render(bean), equalTo(
+            Content.of("/pojo-renderer/ClassHeader-Parent.txt")));
+    }
 }
