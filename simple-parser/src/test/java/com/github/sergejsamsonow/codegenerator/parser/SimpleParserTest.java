@@ -13,7 +13,7 @@ import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleParserTest {
 
-    private static final ParsedBean PAGE = new ParsedBean("frontend", "Page", Arrays.asList(
+    private static final ParsedBean PAGE = new ParsedBean("frontend", "Page", "Content", Arrays.asList(
         new ParsedProperty("header", "Header"),
         new ParsedProperty("message", "String"),
         new ParsedProperty("footer", "Footer")));

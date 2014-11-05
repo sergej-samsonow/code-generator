@@ -1,6 +1,6 @@
 Namespace: frontend
 
-Page
+Page extends Content
 header	: Header
 message	: String
 footer	: Footer

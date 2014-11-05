@@ -9,19 +9,21 @@ import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 public class SimpleParser {
 
     private static final Pattern NPTR = Pattern.compile("^Namespace\\s*:\\s*([a-z.]*)$");
-    private static final Pattern TPTR = Pattern.compile("^([a-zA-Z0-9.]+)$");
+    private static final Pattern TPTR = Pattern.compile("^([a-zA-Z0-9.]+)(?:\\s+extends\\s+([a-zA-Z0-9.]+))?$");
     private static final Pattern PPTR = Pattern.compile("^([a-z][A-Za-z0-9]*)\\s*:\\s*([A-Za-z0-9.<>]+)$");
 
     private ProducerAccess<ParsedBean> producer;
     private String namespace;
     private Matcher matcher;
     private String beanType;
+    private String parentType;
     private List<ParsedProperty> properties;
 
     public SimpleParser(ProducerAccess<ParsedBean> producer) {
         this.producer = producer;
         this.namespace = "";
         this.beanType = null;
+        this.parentType = null;
         this.properties = new ArrayList<>();
     }
 
@@ -68,6 +70,7 @@ public class SimpleParser {
     private void processBeanDeclaration() {
         packBeanIfExists();
         beanType = matcher.group(1);
+        parentType = matcher.group(2);
     }
 
     private void processPropertyDeclaration() {
@@ -76,8 +79,9 @@ public class SimpleParser {
 
     private void packBeanIfExists() {
         if (beanType != null) {
-            producer.newItem(new ParsedBean(namespace, beanType, new ArrayList<>(properties)));
+            producer.newItem(new ParsedBean(namespace, beanType, parentType, new ArrayList<>(properties)));
             beanType = null;
+            parentType = null;
             properties.clear();
         }
     }
