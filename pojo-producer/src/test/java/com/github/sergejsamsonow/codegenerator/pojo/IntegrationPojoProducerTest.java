@@ -30,7 +30,7 @@ public class IntegrationPojoProducerTest {
         ParsedProperty place = new ParsedProperty("place", "String");
         ParsedProperty age = new ParsedProperty("age", "Integer");
         ParsedProperty attributes = new ParsedProperty("attributes", "List<fragments.Attribute>");
-        bean = new ParsedBean("frontend", "Form", asList(place, age, attributes));
+        bean = new ParsedBean("frontend", "Form", "", asList(place, age, attributes));
         producer = new PojoProducer(writer, FORMAT);
     }
 
