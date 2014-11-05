@@ -8,6 +8,12 @@ import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 
 public class SimpleParser {
 
+    private static final int NAMESPACE_CONTENT = 1;
+    private static final int TYPE_NAME_CONTENT = 1;
+    private static final int PARENT_TYPE_CONTENT = 2;
+    private static final int PROPERTY_NAME_CONTENT = 1;
+    private static final int PROPERTY_TYPE_CONTENT = 2;
+
     private static final Pattern NPTR = Pattern.compile("^Namespace\\s*:\\s*([a-z.]*)$");
     private static final Pattern TPTR = Pattern.compile("^([a-zA-Z0-9.]+)(?:\\s+extends\\s+([a-zA-Z0-9.]+))?$");
     private static final Pattern PPTR = Pattern.compile("^([a-z][A-Za-z0-9]*)\\s*:\\s*([A-Za-z0-9.<>]+)$");
@@ -64,17 +70,18 @@ public class SimpleParser {
     }
 
     private void processNamespaceDeclaration() {
-        namespace = matcher.group(1);
+        namespace = matcher.group(NAMESPACE_CONTENT);
     }
 
     private void processBeanDeclaration() {
         packBeanIfExists();
-        beanType = matcher.group(1);
-        parentType = matcher.group(2);
+        beanType = matcher.group(TYPE_NAME_CONTENT);
+        parentType = matcher.group(PARENT_TYPE_CONTENT);
     }
 
     private void processPropertyDeclaration() {
-        properties.add(new ParsedProperty(matcher.group(1), matcher.group(2)));
+        properties.add(new ParsedProperty(
+            matcher.group(PROPERTY_NAME_CONTENT), matcher.group(PROPERTY_TYPE_CONTENT)));
     }
 
     private void packBeanIfExists() {
