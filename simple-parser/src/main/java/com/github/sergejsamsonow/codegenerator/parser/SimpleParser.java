@@ -2,6 +2,7 @@ package com.github.sergejsamsonow.codegenerator.parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
@@ -23,9 +24,11 @@ public class SimpleParser {
     private Matcher matcher;
     private String beanType;
     private String parentType;
+    private Set<String> extended;
     private List<ParsedProperty> properties;
 
-    public SimpleParser(ProducerAccess<ParsedBean> producer) {
+    public SimpleParser(ProducerAccess<ParsedBean> producer, Set<String> extended) {
+        this.extended = extended;
         this.producer = producer;
         this.namespace = "";
         this.beanType = null;
@@ -84,12 +87,24 @@ public class SimpleParser {
             matcher.group(PROPERTY_NAME_CONTENT), matcher.group(PROPERTY_TYPE_CONTENT)));
     }
 
+    private ParsedBean createBean() {
+        String type = String.format("%s.%s", namespace, beanType);
+        if (extended.contains(type)) {
+            return new SimpleParsedBean(namespace, beanType + "Base", parentType, new ArrayList<>(properties));
+        }
+        return new SimpleParsedBean(namespace, beanType, parentType, new ArrayList<>(properties));
+    }
+
+    private void cleanUp() {
+        beanType = null;
+        parentType = null;
+        properties.clear();
+    }
+
     private void packBeanIfExists() {
         if (beanType != null) {
-            producer.newItem(new SimpleParsedBean(namespace, beanType, parentType, new ArrayList<>(properties)));
-            beanType = null;
-            parentType = null;
-            properties.clear();
+            producer.newItem(createBean());
+            cleanUp();
         }
     }
 
