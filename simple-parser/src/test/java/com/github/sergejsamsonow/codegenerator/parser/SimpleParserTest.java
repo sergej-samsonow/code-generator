@@ -18,11 +18,11 @@ public class SimpleParserTest {
         new ParsedProperty("message", "String"),
         new ParsedProperty("footer", "Footer")));
 
-    private static final ParsedBean HEADER = new ParsedBean("frontend", "Header", Arrays.asList(new ParsedProperty(
+    private static final ParsedBean HEADER = new ParsedBean("frontend", "Header", null, Arrays.asList(new ParsedProperty(
         "content",
         "String")));
 
-    private static final ParsedBean FOOTER = new ParsedBean("frontend", "Footer", Arrays.asList(new ParsedProperty(
+    private static final ParsedBean FOOTER = new ParsedBean("frontend", "Footer", null, Arrays.asList(new ParsedProperty(
         "content",
         "String")));
 

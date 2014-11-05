@@ -12,23 +12,24 @@ import org.mockito.Mockito;
 public class ParsedBeanTest {
 
     private static final String TYPE = "Form";
+    private static final String PARENT = "Parent";
     private static final String NAMESPACE = "page";
 
     @Test
     public void testGetNamespace() throws Exception {
-        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, PARENT, Collections.emptyList());
         assertThat(bean.getNamespace(), equalTo(NAMESPACE));
     }
 
     @Test
     public void testGetType() throws Exception {
-        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, PARENT, Collections.emptyList());
         assertThat(bean.getType(), equalTo(TYPE));
     }
 
     @Test
     public void testGetProperties() throws Exception {
-        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, PARENT, Collections.emptyList());
         assertThat(bean.getProperties(), equalTo(Collections.emptyList()));
     }
 
@@ -38,7 +39,7 @@ public class ParsedBeanTest {
         properties.add(Mockito.mock(ParsedProperty.class));
         properties.add(Mockito.mock(ParsedProperty.class));
 
-        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, properties);
+        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, PARENT, properties);
         properties.pollFirst();
         assertThat(bean.getProperties().size(), equalTo(2));
     }
@@ -49,36 +50,30 @@ public class ParsedBeanTest {
         properties.add(Mockito.mock(ParsedProperty.class));
         properties.add(Mockito.mock(ParsedProperty.class));
 
-        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, properties);
+        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, PARENT, properties);
         bean.getProperties().clear();
         assertThat(bean.getProperties().size(), equalTo(2));
     }
 
     @Test
     public void testHashCode() throws Exception {
-        int expected = Objects.hash(NAMESPACE, TYPE, Collections.emptyList(), "");
-        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        int expected = Objects.hash(NAMESPACE, TYPE, Collections.emptyList(), PARENT);
+        ParsedBean bean = new ParsedBean(NAMESPACE, TYPE, PARENT, Collections.emptyList());
         assertThat(bean.hashCode(), equalTo(expected));
     }
 
     @Test
     public void testEqualsEquals() throws Exception {
-        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
-        ParsedBean b = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, PARENT, Collections.emptyList());
+        ParsedBean b = new ParsedBean(NAMESPACE, TYPE, PARENT, Collections.emptyList());
         assertThat(a.equals(b), equalTo(true));
     }
 
     @Test
     public void testEqualsNotEquals() throws Exception {
-        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
+        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, PARENT, Collections.emptyList());
         ParsedBean b = new ParsedBean(NAMESPACE, TYPE, "A", Collections.emptyList());
         assertThat(a.equals(b), not(equalTo(true)));
-    }
-
-    @Test
-    public void testGetParentTypeOnEmptyType() throws Exception {
-        ParsedBean a = new ParsedBean(NAMESPACE, TYPE, Collections.emptyList());
-        assertThat(a.getParentType(), equalTo(""));
     }
 
     @Test

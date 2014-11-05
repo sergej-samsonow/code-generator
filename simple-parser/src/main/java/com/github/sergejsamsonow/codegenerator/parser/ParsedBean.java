@@ -11,10 +11,6 @@ public class ParsedBean {
     private String parentType;
     private List<ParsedProperty> properties;
 
-    public ParsedBean(String namespace, String type, List<ParsedProperty> properties) {
-        this(namespace, type, "", properties);
-    }
-
     public ParsedBean(String namespace, String type, String parentType, List<ParsedProperty> properties) {
         this.namespace = namespace;
         this.type = type;
