@@ -50,6 +50,12 @@ public class ExtendedBeanDecoratorTest {
     }
 
     @Test
+    public void testExtendedBeanDecoratorNullExtended() throws Exception {
+        decorator = new ExtendedBeanDecorator(producer, null);
+        decorator.newItem(parsed);
+    }
+
+    @Test
     public void testNewItemDelegate() throws Exception {
         when(extended.contains(EXTENDED)).thenReturn(false);
         decorator.newItem(parsed);

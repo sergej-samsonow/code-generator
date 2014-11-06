@@ -1,5 +1,6 @@
 package com.github.sergejsamsonow.codegenerator.parser;
 
+import java.util.Collections;
 import java.util.Set;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 
@@ -13,7 +14,7 @@ public class ExtendedBeanDecorator implements ProducerAccess<ParsedBean> {
             throw new IllegalArgumentException("Producer object is null!");
         }
         this.producer = producer;
-        this.extended = extended;
+        this.extended = extended == null ? Collections.emptySet() : extended;
     }
 
     @Override
@@ -25,7 +26,7 @@ public class ExtendedBeanDecorator implements ProducerAccess<ParsedBean> {
         producer.newItem(parsed);
     }
 
-    private SimpleParsedBean addBaseSuffix(ParsedBean parsed) {
+    private ParsedBean addBaseSuffix(ParsedBean parsed) {
         return new SimpleParsedBean(parsed.getNamespace(),
             parsed.getType() + "Base", parsed.getParentType(), parsed.getProperties());
     }
