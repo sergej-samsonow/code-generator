@@ -14,7 +14,6 @@ und die [erwartete Ausgabe][2] dazu. Es folgt nun die Klassen Übersicht.
 ```
     content : String
 ```
-Java:
 ```java
     private String content;
 ```
@@ -24,7 +23,6 @@ Java:
 ```
     content : String
 ```
-Java:
 ```java
     getContent() {
         return content;
@@ -36,7 +34,6 @@ Java:
 ```
     content : String
 ```
-Java:
 ```java
     setContent(String content) {
         this.content = content;
