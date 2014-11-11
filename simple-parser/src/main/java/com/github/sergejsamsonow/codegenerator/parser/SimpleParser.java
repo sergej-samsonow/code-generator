@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedProperty;
 
 public class SimpleParser {
 

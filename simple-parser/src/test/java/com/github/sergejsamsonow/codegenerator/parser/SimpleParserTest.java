@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleParserTest {

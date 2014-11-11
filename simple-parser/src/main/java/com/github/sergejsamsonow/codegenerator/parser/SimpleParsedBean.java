@@ -3,6 +3,8 @@ package com.github.sergejsamsonow.codegenerator.parser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedProperty;
 
 public class SimpleParsedBean implements ParsedBean {
 

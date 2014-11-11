@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExtendedBeanDecoratorTest {

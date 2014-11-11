@@ -17,10 +17,5 @@
             <artifactId>code-generator-api</artifactId>
             <version>${version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.sergejsamsonow</groupId>
-            <artifactId>code-generator-simple-parser</artifactId>
-            <version>${version}</version>
-        </dependency>
     </dependencies>
 </project>

@@ -10,9 +10,9 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
 import com.github.sergejsamsonow.codegenerator.api.WriterAccess;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedProperty;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
-import com.github.sergejsamsonow.codegenerator.parser.ParsedBean;
-import com.github.sergejsamsonow.codegenerator.parser.ParsedProperty;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IntegrationPojoProducerTest {

@@ -3,6 +3,7 @@ package com.github.sergejsamsonow.codegenerator.parser;
 import java.util.Collections;
 import java.util.Set;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
+import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
 
 public class ExtendedBeanDecorator implements ProducerAccess<ParsedBean> {
 
