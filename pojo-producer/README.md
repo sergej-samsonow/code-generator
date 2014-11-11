@@ -7,6 +7,7 @@ und die [erwartete Ausgabe][2] dazu. Es folgt nun die Klassen Übersicht.
 ![Überblick](src/site/resources/pojo-producer.png)
 
 ## Renderer
+Beispiele von Renderer generierten Programmcode.
 
 ##### ClassHeader
 ```
