@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
 import com.github.sergejsamsonow.codegenerator.api.WriterAccess;
-import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
-import com.github.sergejsamsonow.codegenerator.api.parser.ParsedProperty;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedProperty;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
 
 @RunWith(MockitoJUnitRunner.class)

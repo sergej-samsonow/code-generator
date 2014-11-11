@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.Objects;
 import org.junit.Test;
 import org.mockito.Mockito;
-import com.github.sergejsamsonow.codegenerator.api.parser.ParsedBean;
-import com.github.sergejsamsonow.codegenerator.api.parser.ParsedProperty;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedProperty;
 
 public class SimpleParsedBeanTest {
 

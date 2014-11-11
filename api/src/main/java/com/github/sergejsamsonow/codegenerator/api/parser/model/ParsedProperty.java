@@ -1,4 +1,4 @@
-package com.github.sergejsamsonow.codegenerator.api.parser;
+package com.github.sergejsamsonow.codegenerator.api.parser.model;
 
 public interface ParsedProperty {
 
