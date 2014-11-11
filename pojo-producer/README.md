@@ -9,40 +9,77 @@ und die [erwartete Ausgabe][2] dazu. Es folgt nun die Klassen Übersicht.
 ## Renderer
 
 ##### ClassHeader
+```
+Form extends Widget
+suggest     : String
+attributes  : List<page.Attribute>
+```
+```java
+import java.util.List;
+import java.util.ArrayList;
+import page.Attribute;
+public class Form extends Widget {
+```
+(Imports können abweichen)
+
 ##### Constructor
+```
+Form
+content : String
+frame : page.Frame
+messages : List<Message>
+```
+```java
+    public Form() {
+        setContent("");
+        setFrame(new Frame());
+        setMessages(new ArrayList<>());
+    }
+
+```
+
 ##### Fields
 ```
-    content : String
+content : String
 ```
 ```java
     private String content;
-```
 
+```
 
 ##### Getter
 ```
-    content : String
+content : String
 ```
 ```java
     getContent() {
         return content;
     }
-```
 
+```
 
 ##### Setter
 ```
-    content : String
+content     : String
+attributes  : List<page.Attribute>
 ```
 ```java
     setContent(String content) {
         this.content = content;
     }
-```
 
+    setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
+```
 
 ##### ClassFooter
 Erstellt schließende Classklammer.
+```java
+}
+
+```
 
 [1]: src/test/java/com/github/sergejsamsonow/codegenerator/pojo/IntegrationPojoProducerTest.java
 [2]: src/test/resources/pojo-renderer/PojoProducer-Integration.txt
