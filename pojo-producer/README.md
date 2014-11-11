@@ -6,5 +6,46 @@ und die [erwartete Ausgabe][2] dazu. Es folgt nun die Klassen Übersicht.
 
 ![Überblick](src/site/resources/pojo-producer.png)
 
+## Renderer
+
+##### ClassHeader
+##### Constructor
+##### Fields
+```
+    content : String
+```
+Java:
+```java
+    private String content;
+```
+
+
+##### Getter
+```
+    content : String
+```
+Java:
+```java
+    getContent() {
+        return content;
+    }
+```
+
+
+##### Setter
+```
+    content : String
+```
+Java:
+```java
+    setContent(String content) {
+        this.content = content;
+    }
+```
+
+
+##### ClassFooter
+Erstellt schließende Classklammer.
+
 [1]: src/test/java/com/github/sergejsamsonow/codegenerator/pojo/IntegrationPojoProducerTest.java
 [2]: src/test/resources/pojo-renderer/PojoProducer-Integration.txt
