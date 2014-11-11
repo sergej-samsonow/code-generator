@@ -2,7 +2,8 @@ API Übersicht
 =============
 Haupt Schnittstellen [ProducerAccess][1] und [WriterAccess][2]. Für WriterAccess 
 werden zwei Implementierungen bereitgestellt [FileWriter][3] und [StdOutWriter][4]. 
-Producer Paket stellt eine weitere Schnittstelle [Renderer][5] bereit.
+Producer Paket stellt eine weitere Schnittstelle [Renderer][5] bereit. Aktuell 
+verfügbares Parsermodel wird durch [ParsedBean][13] und [ParsedProperty][14] abgebildet.
 
 ![Überblick](src/site/resources/api.png)
 
@@ -98,3 +99,5 @@ Properties Liste da.
 [10]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRenderer.java
 [11]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/SCRendererForPropertiesContainer.java
 [12]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/PropertiesContainer.java
+[13]: src/main/java/com/github/sergejsamsonow/codegenerator/api/parser/model/ParsedBean.java
+[14]: src/main/java/com/github/sergejsamsonow/codegenerator/api/parser/model/ParsedProperty.java
