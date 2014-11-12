@@ -306,4 +306,21 @@ public class MapAccessTest {
         returnValue(asList('A', null));
         assertThat(access.getCharacterList(EXISTING_KEY), equalTo(asList('A', '\0')));
     }
+
+    @Test
+    public void testGetObjectListForMissingKey() throws Exception {
+        assertThat(access.getObjectList(MISSING_KEY), equalTo(Collections.emptyList()));
+    }
+
+    @Test
+    public void testGetObjectListFromArray() throws Exception {
+        returnValue(new Object[] { "A", 1 });
+        assertThat(access.getObjectList(EXISTING_KEY), equalTo(asList("A", 1)));
+    }
+
+    @Test
+    public void testGetObjectListFromIterable() throws Exception {
+        returnValue(asList("A", null, 1L));
+        assertThat(access.getObjectList(EXISTING_KEY), equalTo(asList("A", null, 1L)));
+    }
 }

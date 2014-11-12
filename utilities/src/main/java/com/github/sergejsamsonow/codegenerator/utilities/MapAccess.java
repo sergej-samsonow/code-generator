@@ -263,4 +263,24 @@ public class MapAccess {
         }
         return casted;
     }
+
+    /**
+     * Return empty ArrayList if expected value not found. Return List instead
+     * if entry is objects array. Check NOT for null entries in result list.
+     */
+    public List<Object> getObjectList(String key) {
+        List<Object> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof Object[]) {
+            for (Object fetched : (Object[]) value) {
+                casted.add(fetched);
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                casted.add(fetched);
+            }
+        }
+        return casted;
+    }
 }
