@@ -24,6 +24,7 @@ und dabei eine Menge Tipparbeit zu sparen.
 * [code-generator-api](api) - Entwicklungs API
 * [code-generator-simple-parser](simple-parser) - Beispiel Parser implementierung.
 * [code-generator-pojo-producer](pojo-producer) - Plain old java objects code generator.
+* [code-generator-utilities](utilities) - Komponente die von den generierten Klassen benötigt werden.
 
 ## Architektur
 Aktuelle Architektur besteht in wesentlichen aus 3 folgenden Schichten
