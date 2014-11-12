@@ -29,6 +29,10 @@ public class MapAccess {
         }
     }
 
+    private <T> void addToCasted(List<T> casted, Class<T> clazz, Object fetched, T defaultValue) {
+        casted.add(fetchedOrDefault(castTo(clazz, fetched), defaultValue));
+    }
+
     private <T> T fetchedOrDefault(T fetchedValue, T defaultValue) {
         return fetchedValue == null ? defaultValue : fetchedValue;
     }
@@ -104,9 +108,9 @@ public class MapAccess {
 
     /**
      * Return empty ArrayList if expected value not found. Iterating over list
-     * and cast every list value to boolean if entry is Iterable or boolean
+     * and cast every list value to Boolean if entry is Iterable or boolean
      * array. Insert default boolean value if cast of current Iterable entry
-     * fail.
+     * fail or entry is null.
      */
     public List<Boolean> getBooleanList(String key) {
         List<Boolean> casted = new ArrayList<>();
@@ -116,15 +120,37 @@ public class MapAccess {
         }
         if (value instanceof boolean[]) {
             for (boolean fetched : (boolean[]) value) {
-                casted.add(fetchedOrDefault(fetched, BOOLEAN_DEFAULT));
+                addToCasted(casted, Boolean.class, fetched, BOOLEAN_DEFAULT);
             }
         }
         else if (value instanceof Iterable) {
             for (Object fetched : (Iterable<?>) value) {
-                casted.add(fetchedOrDefault(castTo(Boolean.class, fetched), BOOLEAN_DEFAULT));
+                addToCasted(casted, Boolean.class, fetched, BOOLEAN_DEFAULT);
             }
         }
 
+        return casted;
+    }
+
+    /**
+     * Return empty ArrayList if expected value not found. Iterating over list
+     * and cast every list value to Integer if entry is Iterable or int
+     * array. Insert default Integer value if cast of current Iterable entry
+     * fail or entry is null.
+     */
+    public List<Integer> getIntegerList(String key) {
+        List<Integer> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof int[]) {
+            for (int fetched : (int[]) value) {
+                addToCasted(casted, Integer.class, fetched, INTEGER_DEFAULT);
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                addToCasted(casted, Integer.class, fetched, INTEGER_DEFAULT);
+            }
+        }
         return casted;
     }
 }

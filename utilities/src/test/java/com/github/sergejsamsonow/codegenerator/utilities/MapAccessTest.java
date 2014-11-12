@@ -205,4 +205,21 @@ public class MapAccessTest {
         assertThat(access.getBooleanList(EXISTING_KEY), equalTo(asList(true, false, false)));
     }
 
+    @Test
+    public void testGetIntegerListMissingKey() throws Exception {
+        assertThat(access.getIntegerList(MISSING_KEY), equalTo(Collections.emptyList()));
+    }
+
+    @Test
+    public void testGetIntegerListFromArray() throws Exception {
+        returnValue(new int[] { 1, 1 });
+        assertThat(access.getIntegerList(EXISTING_KEY), equalTo(asList(1, 1)));
+    }
+
+    @Test
+    public void testGetIntegerListFromIterable() throws Exception {
+        returnValue(asList(1, null));
+        assertThat(access.getIntegerList(EXISTING_KEY), equalTo(asList(1, 0)));
+    }
+
 }
