@@ -134,9 +134,9 @@ public class MapAccess {
 
     /**
      * Return empty ArrayList if expected value not found. Iterating over list
-     * and cast every list value to Integer if entry is Iterable or int
-     * array. Insert default Integer value if cast of current Iterable entry
-     * fail or entry is null.
+     * and cast every list value to Integer if entry is Iterable or int array.
+     * Insert default Integer value if cast of current Iterable entry fail or
+     * entry is null.
      */
     public List<Integer> getIntegerList(String key) {
         List<Integer> casted = new ArrayList<>();
@@ -149,6 +149,28 @@ public class MapAccess {
         else if (value instanceof Iterable) {
             for (Object fetched : (Iterable<?>) value) {
                 addToCasted(casted, Integer.class, fetched, INTEGER_DEFAULT);
+            }
+        }
+        return casted;
+    }
+
+    /**
+     * Return empty ArrayList if expected value not found. Iterating over list
+     * and cast every list value to Float if entry is Iterable or float array.
+     * Insert default Float value if cast of current Iterable entry fail or
+     * entry is null.
+     */
+    public List<Float> getFloatList(String key) {
+        List<Float> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof float[]) {
+            for (float fetched : (float[]) value) {
+                addToCasted(casted, Float.class, fetched, FLOAT_DEFAULT);
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                addToCasted(casted, Float.class, fetched, FLOAT_DEFAULT);
             }
         }
         return casted;
