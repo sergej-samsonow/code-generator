@@ -241,4 +241,26 @@ public class MapAccess {
         }
         return casted;
     }
+
+    /**
+     * Return empty ArrayList if expected value not found. Iterating over list
+     * and cast every list value to Character if entry is Iterable or char
+     * array. Insert default Character value if cast of current Iterable entry
+     * fail or entry is null.
+     */
+    public List<Character> getCharacterList(String key) {
+        List<Character> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof char[]) {
+            for (char fetched : (char[]) value) {
+                addToCasted(casted, Character.class, fetched, CHARACTER_DEFAULT);
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                addToCasted(casted, Character.class, fetched, CHARACTER_DEFAULT);
+            }
+        }
+        return casted;
+    }
 }
