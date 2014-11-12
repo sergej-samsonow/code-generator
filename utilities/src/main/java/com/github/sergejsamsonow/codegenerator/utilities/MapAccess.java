@@ -265,8 +265,8 @@ public class MapAccess {
     }
 
     /**
-     * Return empty ArrayList if expected value not found. Return List instead
-     * if entry is objects array. Check NOT for null entries in result list.
+     * Return empty ArrayList if expected value not found. Return ArrayList
+     * if entry is array of objects. Check NOT for null entries in result list.
      */
     public List<Object> getObjectList(String key) {
         List<Object> casted = new ArrayList<>();
@@ -279,6 +279,34 @@ public class MapAccess {
         else if (value instanceof Iterable) {
             for (Object fetched : (Iterable<?>) value) {
                 casted.add(fetched);
+            }
+        }
+        return casted;
+    }
+
+    /**
+     * Return empty ArrayList if expected value not found. Return ArrayList
+     * if entry is array of objects. Returned result list contains no null
+     * entries null entries or entries with failed casting operation are
+     * ignored.
+     */
+    public <T> List<T> getCastedList(Class<T> clazz, String key) {
+        List<T> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof Object[]) {
+            for (Object fetched : (Object[]) value) {
+                T castedValue = castTo(clazz, fetched);
+                if (castedValue != null) {
+                    casted.add(castedValue);
+                }
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                T castedValue = castTo(clazz, fetched);
+                if (castedValue != null) {
+                    casted.add(castedValue);
+                }
             }
         }
         return casted;
