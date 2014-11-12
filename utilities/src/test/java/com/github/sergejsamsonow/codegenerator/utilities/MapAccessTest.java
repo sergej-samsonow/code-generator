@@ -239,4 +239,21 @@ public class MapAccessTest {
         assertThat(access.getFloatList(EXISTING_KEY), equalTo(asList(1.0f, 0.0f)));
     }
 
+    @Test
+    public void testGetLongListMissingKey() throws Exception {
+        assertThat(access.getLongList(MISSING_KEY), equalTo(Collections.emptyList()));
+    }
+
+    @Test
+    public void testGetLongListFromArray() throws Exception {
+        returnValue(new long[] { 1L, 1L });
+        assertThat(access.getLongList(EXISTING_KEY), equalTo(asList(1L, 1L)));
+    }
+
+    @Test
+    public void testGetLongListFromIterable() throws Exception {
+        returnValue(asList(1L, null));
+        assertThat(access.getLongList(EXISTING_KEY), equalTo(asList(1L, 0L)));
+    }
+
 }

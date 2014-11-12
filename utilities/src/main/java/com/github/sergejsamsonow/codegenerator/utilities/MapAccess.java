@@ -175,4 +175,26 @@ public class MapAccess {
         }
         return casted;
     }
+
+    /**
+     * Return empty ArrayList if expected value not found. Iterating over list
+     * and cast every list value to Long if entry is Iterable or long array.
+     * Insert default Long value if cast of current Iterable entry fail or
+     * entry is null.
+     */
+    public List<Long> getLongList(String key) {
+        List<Long> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof long[]) {
+            for (long fetched : (long[]) value) {
+                addToCasted(casted, Long.class, fetched, LONG_DEFAULT);
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                addToCasted(casted, Long.class, fetched, LONG_DEFAULT);
+            }
+        }
+        return casted;
+    }
 }
