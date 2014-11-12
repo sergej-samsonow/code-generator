@@ -219,4 +219,26 @@ public class MapAccess {
         }
         return casted;
     }
+
+    /**
+     * Return empty ArrayList if expected value not found. Iterating over list
+     * and cast every list value to String if entry is Iterable or String array.
+     * Insert default String value if cast of current Iterable entry fail or
+     * entry is null.
+     */
+    public List<String> getStringList(String key) {
+        List<String> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof String[]) {
+            for (String fetched : (String[]) value) {
+                addToCasted(casted, String.class, fetched, STRING_DEFAULT);
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                addToCasted(casted, String.class, fetched, STRING_DEFAULT);
+            }
+        }
+        return casted;
+    }
 }

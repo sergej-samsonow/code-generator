@@ -273,4 +273,21 @@ public class MapAccessTest {
         assertThat(access.getDoubleList(EXISTING_KEY), equalTo(asList(1.0D, 0.0D)));
     }
 
+    @Test
+    public void testGetStringListMissingKey() throws Exception {
+        assertThat(access.getStringList(MISSING_KEY), equalTo(Collections.emptyList()));
+    }
+
+    @Test
+    public void testGetStringListFromArray() throws Exception {
+        returnValue(new String[] { "A", "B" });
+        assertThat(access.getStringList(EXISTING_KEY), equalTo(asList("A", "B")));
+    }
+
+    @Test
+    public void testGetStringListFromIterable() throws Exception {
+        returnValue(asList("A", null));
+        assertThat(access.getStringList(EXISTING_KEY), equalTo(asList("A", "")));
+    }
+
 }
