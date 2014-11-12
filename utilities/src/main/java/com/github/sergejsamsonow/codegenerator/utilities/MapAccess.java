@@ -197,4 +197,26 @@ public class MapAccess {
         }
         return casted;
     }
+
+    /**
+     * Return empty ArrayList if expected value not found. Iterating over list
+     * and cast every list value to Double if entry is Iterable or double array.
+     * Insert default Double value if cast of current Iterable entry fail or
+     * entry is null.
+     */
+    public List<Double> getDoubleList(String key) {
+        List<Double> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof double[]) {
+            for (double fetched : (double[]) value) {
+                addToCasted(casted, Double.class, fetched, DOUBLE_DEFAULT);
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                addToCasted(casted, Double.class, fetched, DOUBLE_DEFAULT);
+            }
+        }
+        return casted;
+    }
 }
