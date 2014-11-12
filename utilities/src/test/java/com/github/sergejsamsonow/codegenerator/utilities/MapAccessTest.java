@@ -1,9 +1,11 @@
 package com.github.sergejsamsonow.codegenerator.utilities;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
+import java.util.Collections;
 import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
@@ -184,6 +186,23 @@ public class MapAccessTest {
     public void testGetStringExistingKeyButDifferentType() throws Exception {
         returnValue(INTEGER_VALUE);
         assertThat(access.getString(EXISTING_KEY), equalTo(""));
+    }
+
+    @Test
+    public void testGetBooleanListMissingKey() throws Exception {
+        assertThat(access.getBooleanList(MISSING_KEY), equalTo(Collections.emptyList()));
+    }
+
+    @Test
+    public void testGetBooleanListFromArray() throws Exception {
+        returnValue(new boolean[] { true, true });
+        assertThat(access.getBooleanList(EXISTING_KEY), equalTo(asList(true, true)));
+    }
+
+    @Test
+    public void testGetBooleanListFromIterable() throws Exception {
+        returnValue(asList(true, null, false));
+        assertThat(access.getBooleanList(EXISTING_KEY), equalTo(asList(true, false, false)));
     }
 
 }

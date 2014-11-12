@@ -1,5 +1,7 @@
 package com.github.sergejsamsonow.codegenerator.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MapAccess {
@@ -100,4 +102,29 @@ public class MapAccess {
         return fetchedOrDefault(getType(key, String.class), STRING_DEFAULT);
     }
 
+    /**
+     * Return empty ArrayList if expected value not found. Iterating over list
+     * and cast every list value to boolean if entry is Iterable or boolean
+     * array. Insert default boolean value if cast of current Iterable entry
+     * fail.
+     */
+    public List<Boolean> getBooleanList(String key) {
+        List<Boolean> casted = new ArrayList<>();
+        Object value = getObject(key);
+        if (value == null) {
+            return casted;
+        }
+        if (value instanceof boolean[]) {
+            for (boolean fetched : (boolean[]) value) {
+                casted.add(fetchedOrDefault(fetched, BOOLEAN_DEFAULT));
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                casted.add(fetchedOrDefault(castTo(Boolean.class, fetched), BOOLEAN_DEFAULT));
+            }
+        }
+
+        return casted;
+    }
 }
