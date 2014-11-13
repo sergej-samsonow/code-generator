@@ -136,4 +136,76 @@ public class SimplePojoPropertyTest {
         SimplePojoProperty basicType = new SimplePojoProperty(N, "Double");
         assertThat(basicType.getInitCode(), equalTo("0.0D"));
     }
+
+    @Test
+    public void testContiansSimpleTypeBooleanScalar() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "Boolean");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeBooleanList() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Boolean>");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeIntegerScalar() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "Integer");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeIntegerList() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Integer>");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeFloatScalar() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "Float");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeFloatList() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Float>");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeLongScalar() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "Long");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeLongList() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Long>");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeDoubleScalar() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "Double");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeDoubleList() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Double>");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeStringScalar() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "String");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
+
+    @Test
+    public void testContiansSimpleTypeStringList() throws Exception {
+        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<String>");
+        assertThat(basicType.contiansSimpleType(), equalTo(true));
+    }
 }

@@ -11,6 +11,7 @@ import java.util.Set;
 public class SimplePojoProperty implements PojoProperty {
 
     private boolean list;
+    private boolean containsSimpleType;
     private String name;
     private String initCode;
     private Set<String> importedTypes;
@@ -83,6 +84,8 @@ public class SimplePojoProperty implements PojoProperty {
         else {
             declarationType = content;
         }
+        containsSimpleType = declarationType.matches(
+            "^String|Boolean|Integer|Float|Long|Double$");
     }
 
     protected String extractListContentType(String parsedType) {
@@ -102,6 +105,11 @@ public class SimplePojoProperty implements PojoProperty {
     @Override
     public boolean isList() {
         return list;
+    }
+
+    @Override
+    public boolean contiansSimpleType() {
+        return containsSimpleType;
     }
 
     @Override

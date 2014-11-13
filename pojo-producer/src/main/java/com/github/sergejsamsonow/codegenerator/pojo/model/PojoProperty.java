@@ -8,6 +8,8 @@ public interface PojoProperty {
 
     public boolean isList();
 
+    public boolean contiansSimpleType();
+
     public String getInitCode();
 
     public Set<String> getImportedTypes();
