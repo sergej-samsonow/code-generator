@@ -82,5 +82,30 @@ Erstellt schließende Classklammer.
 
 ```
 
+##### MapSerializerToMap
+Serialization von Objekt Inhalt zu Map<String, Object>.
+***Wichtig*** wenn man diesen Renderer verwendet dann muss man 
+```com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer``` Interface importieren. 
+```
+name : String
+address : Address
+numbers : List<Integer>
+persons : List<Person>
+```
+```java
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("name", getName());
+        resultMap.put("address", getAddress().toMap());
+        resultMap.put("numbers", getNumbers());
+        List<Map<String, Object>> personsList = new ArrayList<>();
+        getPersons().stream().forEach(current -> personsList.add(current.toMap()));
+        resultMap.put("persons", personsList);
+        return resultMap;
+    }
+
+```
+
 [1]: src/test/java/com/github/sergejsamsonow/codegenerator/pojo/IntegrationPojoProducerTest.java
 [2]: src/test/resources/pojo-renderer/PojoProducer-Integration.txt
