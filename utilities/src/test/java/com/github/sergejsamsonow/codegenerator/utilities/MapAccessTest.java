@@ -336,7 +336,7 @@ public class MapAccessTest {
         assertThat(access.getCastedList(String.class, EXISTING_KEY), equalTo(asList("A")));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testMapAccessIllegalArgument() throws Exception {
         new MapAccess(null);
     }

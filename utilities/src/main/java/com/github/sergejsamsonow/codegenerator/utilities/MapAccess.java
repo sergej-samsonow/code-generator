@@ -19,15 +19,14 @@ public class MapAccess {
 
     /**
      * Important object is immutable it creates an new copy from incoming map.
-     *
-     * @throws IllegalArgumentException
-     *             if map is null.
      */
     public MapAccess(Map<String, Object> map) {
         if (map == null) {
-            throw new IllegalArgumentException("Input map is null!");
+            this.map = new HashMap<>();
         }
-        this.map = new HashMap<>(map);
+        else {
+            this.map = new HashMap<>(map);
+        }
     }
 
     private <T> T castTo(Class<T> clazz, Object value) {
