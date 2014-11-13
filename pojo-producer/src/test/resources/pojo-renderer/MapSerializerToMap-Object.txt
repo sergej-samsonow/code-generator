@@ -1,0 +1,6 @@
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("address", getAddress().toMap());
+        return resultMap;
+    }

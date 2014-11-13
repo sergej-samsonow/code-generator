@@ -1,0 +1,10 @@
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> resultMap = new HashMap<>();
+        ArrayList<Map<String, Object>> personsList = new ArrayList<>();
+        for (Person current : getPersons()) {
+            personsList.add(current.toMap());
+        }
+        resultMap.put("persons", personsList);
+        return resultMap;
+    }

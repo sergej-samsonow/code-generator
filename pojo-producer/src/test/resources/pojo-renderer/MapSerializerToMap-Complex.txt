@@ -1,0 +1,13 @@
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("name", getName());
+        resultMap.put("address", getAddress().toMap());
+        resultMap.put("numbers", getNumbers());
+        ArrayList<Map<String, Object>> personsList = new ArrayList<>();
+        for (Person current : getPersons()) {
+            personsList.add(current.toMap());
+        }
+        resultMap.put("persons", personsList);
+        return resultMap;
+    }
