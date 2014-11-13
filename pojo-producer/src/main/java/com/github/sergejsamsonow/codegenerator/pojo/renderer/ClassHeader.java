@@ -1,6 +1,7 @@
 package com.github.sergejsamsonow.codegenerator.pojo.renderer;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.join;
 import java.util.Set;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCCodeConcatenator;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
@@ -43,16 +44,23 @@ public class ClassHeader extends SCRenderer<PojoBean> {
         imports.stream().sorted().forEach(current -> writer.line("import %s;", current));
     }
 
+    private String classPart() {
+        return "public class " + data.getClassName() + " ";
+    }
+
+    private String extendsPart() {
+        String parentClass = data.getParentClass();
+        return isEmpty(parentClass) ? "" : "extends " + parentClass + " ";
+    }
+
+    private String interfacesesPart() {
+        String interfaces = join(data.getInterfaces(), ", ");
+        return isEmpty(interfaces) ? "" : "implements " + interfaces + " ";
+    }
+
     private void writeClassDeclaration() {
         writer.emptyNewLine();
-        String parentClassName = data.getParentClass();
-        String className = data.getClassName();
-        if (isEmpty(parentClassName)) {
-            writer.line("public class %s {", className);
-        }
-        else {
-            writer.line("public class %s extends %s {", className, parentClassName);
-        }
+        writer.line("%s%s%s{", classPart(), extendsPart(), interfacesesPart());
         writer.emptyNewLine();
     }
 

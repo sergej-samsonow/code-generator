@@ -64,4 +64,29 @@ public class ClassHeaderTest {
         assertThat(renderer.render(bean), equalTo(
             Content.of("/pojo-renderer/ClassHeader-Parent.txt")));
     }
+
+    @Test
+    public void testRenderOneInterface() throws Exception {
+        when(bean.getImports()).thenReturn(Collections.emptySet());
+        when(bean.getInterfaces()).thenReturn(new HashSet<>(asList("One")));
+        assertThat(renderer.render(bean), equalTo(
+            Content.of("/pojo-renderer/ClassHeader-OneInterface.txt")));
+    }
+
+    @Test
+    public void testRenderMultipleInterfaces() throws Exception {
+        when(bean.getImports()).thenReturn(Collections.emptySet());
+        when(bean.getInterfaces()).thenReturn(new HashSet<>(asList("One", "Two")));
+        assertThat(renderer.render(bean), equalTo(
+            Content.of("/pojo-renderer/ClassHeader-TwoInterfaces.txt")));
+    }
+
+    @Test
+    public void testRenderMultipleInterfacesWithParentClass() throws Exception {
+        when(bean.getImports()).thenReturn(Collections.emptySet());
+        when(bean.getParentClass()).thenReturn("Parent");
+        when(bean.getInterfaces()).thenReturn(new HashSet<>(asList("One", "Two")));
+        assertThat(renderer.render(bean), equalTo(
+            Content.of("/pojo-renderer/ClassHeader-ParentAndTwoInterfaces.txt")));
+    }
 }
