@@ -4,3 +4,4 @@
         resultMap.put("address", getAddress().toMap());
         return resultMap;
     }
+

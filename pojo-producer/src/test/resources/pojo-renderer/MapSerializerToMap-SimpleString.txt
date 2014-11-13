@@ -4,3 +4,4 @@
         resultMap.put("name", getName());
         return resultMap;
     }
+
