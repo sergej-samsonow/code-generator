@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -86,6 +87,59 @@ public class SimplePojoBeanTest {
     }
 
     @Test
+    public void testGetInterfaces() throws Exception {
+        assertThat(bean.getInterfaces(), equalTo(Collections.emptySet()));
+    }
+
+    @Test
+    public void testAddToInterfacesOwnPackage() throws Exception {
+        bean.addToInterfaces("Item");
+        assertThat(bean.getInterfaces(), hasItems("Item"));
+    }
+
+    @Test
+    public void testAddToInterfacesNullValue() throws Exception {
+        bean.addToInterfaces(null);
+        assertThat(bean.getInterfaces(), equalTo(Collections.emptySet()));
+    }
+
+    @Test
+    public void testAddToInterfacesExternalInterface() throws Exception {
+        bean.addToInterfaces("external.Item");
+        assertThat(bean.getInterfaces(), hasItems("Item"));
+        assertThat(bean.getImports(), hasItems("external.Item"));
+    }
+
+    @Test
+    public void testRemoveFromInterfacesRemoveExternalInterface() throws Exception {
+        bean.addToInterfaces("external.Item");
+        bean.removeFromInterfaces("external.Item");
+        assertThat(bean.getInterfaces(), not(hasItems("Item")));
+        assertThat(bean.getImports(), not(hasItems("external.Item")));
+    }
+
+    @Test
+    public void testRemoveFromInterfacesRemoveOnlyImportedInteraces() throws Exception {
+        bean.addToImports("external.Item");
+        bean.removeFromInterfaces("external.Item");
+        assertThat(bean.getImports(), hasItems("external.Item"));
+    }
+
+    @Test
+    public void testRemoveFromInterfacesRemoveOwnInterface() throws Exception {
+        bean.addToInterfaces("Item");
+        bean.removeFromInterfaces("Item");
+        assertThat(bean.getInterfaces(), not(hasItems("Item")));
+    }
+
+    @Test
+    public void testRemoveFromInterfacesIgnoreNullValues() throws Exception {
+        bean.addToInterfaces("Item");
+        bean.removeFromInterfaces(null);
+        assertThat(bean.getInterfaces(), hasItems("Item"));
+    }
+
+    @Test
     public void testGetParentAddParentToImports() throws Exception {
         bean = new SimplePojoBean(NN, CN, "some.Parent", propertiesMocks());
         assertThat(bean.getImports(), hasItems("some.Parent"));
@@ -111,4 +165,5 @@ public class SimplePojoBeanTest {
         SimplePojoBean b = new SimplePojoBean(NN, CN, null, propertiesMocks());
         assertThat(a.equals(b), not(equalTo(true)));
     }
+
 }

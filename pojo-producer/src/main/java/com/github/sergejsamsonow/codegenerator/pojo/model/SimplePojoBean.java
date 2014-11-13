@@ -12,6 +12,7 @@ public class SimplePojoBean implements PojoBean {
     private String className;
     private String parentClass;
     private List<PojoProperty> properties;
+    private Set<String> interfaces;
     private Set<String> imports;
 
     public SimplePojoBean(String packageName, String className, String parentClass, List<PojoProperty> properties) {
@@ -19,6 +20,7 @@ public class SimplePojoBean implements PojoBean {
         this.imports = new HashSet<>();
         this.className = className;
         this.properties = properties;
+        this.interfaces = new HashSet<>();
         this.parentClass = parentClass == null ? "" : parentClass;
         if (this.parentClass.matches("^[a-z].*")) {
             imports.add(this.parentClass);
@@ -42,6 +44,44 @@ public class SimplePojoBean implements PojoBean {
     @Override
     public String getParentClass() {
         return parentClass;
+    }
+
+    @Override
+    public Set<String> getInterfaces() {
+        return interfaces;
+    }
+
+    @Override
+    public void addToInterfaces(String item) {
+        if (item != null) {
+            if (item.matches("^[a-z].*")) {
+                imports.add(item);
+                interfaces.add(substringAfterLast(item, "."));
+            }
+            else {
+                interfaces.add(item);
+            }
+        }
+    }
+
+    @Override
+    public void removeFromInterfaces(String item) {
+        if (item == null) {
+            return;
+        }
+        if (item.matches("^[a-z].*")) {
+            String imported = item;
+            item = substringAfterLast(item, ".");
+            if (interfaces.contains(item)) {
+                interfaces.remove(item);
+                imports.remove(imported);
+            }
+        }
+        else {
+            if (interfaces.contains(item)) {
+                interfaces.remove(item);
+            }
+        }
     }
 
     @Override
@@ -98,4 +138,5 @@ public class SimplePojoBean implements PojoBean {
         result.append(")");
         return result.toString();
     }
+
 }
