@@ -4,16 +4,12 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.when;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
 public class MapAccessTest {
 
     private static final int INTEGER_VALUE = 10;
@@ -21,20 +17,19 @@ public class MapAccessTest {
     private static final String EXISTING_KEY = "exists";
     private static final String MISSING_KEY = "missing";
 
-    @Mock
     private Map<String, Object> map;
 
     private MapAccess access;
 
     @Before
     public void setUp() {
-        when(map.containsKey(EXISTING_KEY)).thenReturn(true);
-        when(map.containsKey(MISSING_KEY)).thenReturn(false);
+        map = new HashMap<>();
         access = new MapAccess(map);
     }
 
     private void returnValue(Object value) {
-        when(map.get(EXISTING_KEY)).thenReturn(value);
+        map.put(EXISTING_KEY, value);
+        access = new MapAccess(map);
     }
 
     @Test
@@ -339,5 +334,18 @@ public class MapAccessTest {
     public void testGetCastedListFromIterable() throws Exception {
         returnValue(asList("A", null, 1D));
         assertThat(access.getCastedList(String.class, EXISTING_KEY), equalTo(asList("A")));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMapAccessIllegalArgument() throws Exception {
+        new MapAccess(null);
+    }
+
+    @Test
+    public void testMapAccessImmutableMap() throws Exception {
+        returnValue("A");
+        assertThat(access.getString(EXISTING_KEY), equalTo("A"));
+        map.clear();
+        assertThat(access.getString(EXISTING_KEY), equalTo("A"));
     }
 }

@@ -1,6 +1,7 @@
 package com.github.sergejsamsonow.codegenerator.utilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +17,17 @@ public class MapAccess {
 
     private Map<String, Object> map;
 
+    /**
+     * Important object is immutable it creates an new copy from incoming map.
+     *
+     * @throws IllegalArgumentException
+     *             if map is null.
+     */
     public MapAccess(Map<String, Object> map) {
-        this.map = map;
+        if (map == null) {
+            throw new IllegalArgumentException("Input map is null!");
+        }
+        this.map = new HashMap<>(map);
     }
 
     private <T> T castTo(Class<T> clazz, Object value) {
