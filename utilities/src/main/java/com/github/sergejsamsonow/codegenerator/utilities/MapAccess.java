@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class MapAccess {
 
@@ -319,5 +320,55 @@ public class MapAccess {
             }
         }
         return casted;
+    }
+
+    private void populateMap(Map<String, Object> populated, Object from) {
+        if (from instanceof Map) {
+            for (Entry<?, ?> entry : ((Map<?, ?>) from).entrySet()) {
+                Object key = entry.getKey();
+                if (key instanceof String) {
+                    populated.put((String) key, entry.getValue());
+                }
+            }
+        }
+    }
+
+    /**
+     * Return empty map if expected value not found, ignored map entries if
+     * entry key is not a String.
+     */
+    public Map<String, Object> getMap(String key) {
+        Map<String, Object> result = new HashMap<>();
+        populateMap(result, getObject(key));
+        return result;
+    }
+
+    /**
+     * Return empty ArrayList if expected value not found. Return ArrayList
+     * if entry is array of maps. Returned result contains no null values or
+     * empty maps. All returned maps contains only string key entries.
+     */
+    public List<Map<String, Object>> getMapList(String key) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        Object value = getObject(key);
+        if (value instanceof Map[]) {
+            for (Map<?, ?> fetched : (Map[]) value) {
+                Map<String, Object> resultEntry = new HashMap<>();
+                populateMap(resultEntry, fetched);
+                if (!resultEntry.isEmpty()) {
+                    result.add(resultEntry);
+                }
+            }
+        }
+        else if (value instanceof Iterable) {
+            for (Object fetched : (Iterable<?>) value) {
+                Map<String, Object> resultEntry = new HashMap<>();
+                populateMap(resultEntry, fetched);
+                if (!resultEntry.isEmpty()) {
+                    result.add(resultEntry);
+                }
+            }
+        }
+        return result;
     }
 }

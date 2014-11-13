@@ -348,4 +348,70 @@ public class MapAccessTest {
         map.clear();
         assertThat(access.getString(EXISTING_KEY), equalTo("A"));
     }
+
+    @Test
+    public void testGetMapMissingKey() throws Exception {
+        assertThat(access.getMap(MISSING_KEY), equalTo(Collections.emptyMap()));
+    }
+
+    @Test
+    public void testGetMapExistingKey() throws Exception {
+        Map<Object, Object> input = new HashMap<>();
+        input.put("name", "A");
+        input.put(1, "B");
+        returnValue(input);
+
+        Map<String, String> expected = new HashMap<>();
+        expected.put("name", "A");
+        assertThat(access.getMap(EXISTING_KEY), equalTo(expected));
+    }
+
+    @Test
+    public void testGetMapListMissingKey() throws Exception {
+        assertThat(access.getMapList(MISSING_KEY), equalTo(Collections.emptyList()));
+    }
+
+    @Test
+    public void testGetMapListExistingKeyAsArray() throws Exception {
+        Map<Object, Object> withInteger = new HashMap<>();
+        withInteger.put("name", "A");
+        withInteger.put(1, "B");
+
+        Map<Object, Object> one = new HashMap<>();
+        one.put("name", "A");
+
+        Map<Object, Object> integerOnly = new HashMap<>();
+        integerOnly.put(1, "B");
+        integerOnly.put(2, "B");
+
+        withInteger.put(1, "B");
+        Map<Object, Object> two = new HashMap<>();
+        two.put("name", "B");
+
+        returnValue(new Map[] { withInteger, integerOnly, two });
+
+        assertThat(access.getMapList(EXISTING_KEY), equalTo(asList(one, two)));
+
+    }
+
+    @Test
+    public void testGetMapListFromIterable() throws Exception {
+        Map<Object, Object> withInteger = new HashMap<>();
+        withInteger.put("name", "A");
+        withInteger.put(1, "B");
+
+        Map<Object, Object> one = new HashMap<>();
+        one.put("name", "A");
+
+        Map<Object, Object> integerOnly = new HashMap<>();
+        integerOnly.put(1, "B");
+        integerOnly.put(2, "B");
+
+        withInteger.put(1, "B");
+        Map<Object, Object> two = new HashMap<>();
+        two.put("name", "B");
+
+        returnValue(asList(withInteger, integerOnly, two));
+        assertThat(access.getMapList(EXISTING_KEY), equalTo(asList(one, two)));
+    }
 }
