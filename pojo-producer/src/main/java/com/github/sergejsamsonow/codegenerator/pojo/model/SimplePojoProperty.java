@@ -1,12 +1,16 @@
 package com.github.sergejsamsonow.codegenerator.pojo.model;
 
 import static org.apache.commons.lang3.StringUtils.capitalize;
+import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.startsWith;
 import static org.apache.commons.lang3.StringUtils.substringAfterLast;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class SimplePojoProperty implements PojoProperty {
 
@@ -19,6 +23,21 @@ public class SimplePojoProperty implements PojoProperty {
     private String declarationType;
     private String getterName;
     private String setterName;
+
+    private static final Map<String, String> SIMPLE_TYPES;
+    private static final Pattern CONTAINS_SIMPLE_TYPE;
+    static {
+        Map<String, String> simpleTypeWithInitCode = new HashMap<>();
+        simpleTypeWithInitCode.put("String", "\"\"");
+        simpleTypeWithInitCode.put("Boolean", "false");
+        simpleTypeWithInitCode.put("Integer", "0");
+        simpleTypeWithInitCode.put("Float", "0.0F");
+        simpleTypeWithInitCode.put("Long", "0L");
+        simpleTypeWithInitCode.put("Double", "0.0D");
+        CONTAINS_SIMPLE_TYPE = Pattern.compile(
+            "^" + join(simpleTypeWithInitCode.keySet(), "|") + "$");
+        SIMPLE_TYPES = Collections.unmodifiableMap(simpleTypeWithInitCode);
+    }
 
     public SimplePojoProperty(String parsedName, String parsedType) {
         createNameRelatedEntries(parsedName);
@@ -41,30 +60,11 @@ public class SimplePojoProperty implements PojoProperty {
 
     protected void createScalarType(String parsedType) {
         createDeclarationType(parsedType);
-
-        // set init code
-        switch (declarationType) {
-            case "String":
-                initCode = "\"\"";
-                break;
-            case "Boolean":
-                initCode = "false";
-                break;
-            case "Integer":
-                initCode = "0";
-                break;
-            case "Float":
-                initCode = "0.0F";
-                break;
-            case "Long":
-                initCode = "0L";
-                break;
-            case "Double":
-                initCode = "0.0D";
-                break;
-            default:
-                initCode = String.format("new %s()", declarationType);
-                break;
+        if (SIMPLE_TYPES.containsKey(declarationType)) {
+            initCode = SIMPLE_TYPES.get(declarationType);
+        }
+        else {
+            initCode = String.format("new %s()", declarationType);
         }
     }
 
@@ -85,8 +85,7 @@ public class SimplePojoProperty implements PojoProperty {
         else {
             declarationType = content;
         }
-        containsSimpleType = declarationType.matches(
-            "^String|Boolean|Integer|Float|Long|Double$");
+        containsSimpleType = CONTAINS_SIMPLE_TYPE.matcher(declarationType).find();
         containedType = declarationType;
     }
 
