@@ -1,0 +1,8 @@
+    @Override
+    public void fromMap(Map<String, Object> map) {
+        MapAccess mapAccess = new MapAccess(map);
+        Address address = new Address();
+        address.fromMap(mapAccess.getMap("address"));
+        setAddress(address);
+    }
+

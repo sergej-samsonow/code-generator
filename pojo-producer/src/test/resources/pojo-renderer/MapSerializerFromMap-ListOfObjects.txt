@@ -1,0 +1,12 @@
+    @Override
+    public void fromMap(Map<String, Object> map) {
+        MapAccess mapAccess = new MapAccess(map);
+        List<Person> personsList = new ArrayList<>();
+        for (Map<String, Object> current : mapAccess.getMapList("persons")) {
+            Person personsItem = new Person();
+            personsItem.fromMap(current);
+            personsList.add(personsItem);
+        }
+        setPersons(personsList);
+    }
+

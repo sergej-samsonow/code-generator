@@ -1,0 +1,6 @@
+    @Override
+    public void fromMap(Map<String, Object> map) {
+        MapAccess mapAccess = new MapAccess(map);
+        setName(mapAccess.getString("name"));
+    }
+
