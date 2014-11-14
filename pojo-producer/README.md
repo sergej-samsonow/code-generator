@@ -86,7 +86,7 @@ Erstellt schließende Classklammer.
 Serialization von Objekt Inhalt zu Map<String, Object>.
 **Wichtig** wenn man diesen Renderer verwendet dann muss man
 ```java
-com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer
+import com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer;
 ```
 Interface für generierten Code bereitstellen.
 
@@ -115,8 +115,8 @@ persons : List<Person>
 Serialization von Objekt Inhalt zu Map<String, Object>.
 **Wichtig** wenn man diesen Renderer verwendet dann muss man 
 ```java
-import com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer
-import com.github.sergejsamsonow.codegenerator.utilities.MapAccess
+import com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer;
+import com.github.sergejsamsonow.codegenerator.utilities.MapAccess;
 ```
 Interface und Class für generierten Code bereitstellen.
 
