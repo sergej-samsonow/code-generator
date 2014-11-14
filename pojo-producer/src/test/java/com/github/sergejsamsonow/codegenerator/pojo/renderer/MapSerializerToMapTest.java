@@ -3,7 +3,6 @@ package com.github.sergejsamsonow.codegenerator.pojo.renderer;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.junit.Before;
@@ -16,6 +15,7 @@ import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndInden
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoProperty;
 import com.github.sergejsamsonow.codegenerator.pojo.model.SimplePojoProperty;
+import com.github.sergejsamsonow.codegenerator.pojo.renderer.mapserializer.BeanModifier;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MapSerializerToMapTest {
@@ -41,30 +41,7 @@ public class MapSerializerToMapTest {
     @Test
     public void testModifyAddMapSerializerInterface() throws Exception {
         renderer.modify(bean);
-        verify(bean).addToInterfaces("com.github.sergejsamsonow.codegenerator.utilities.MapSerializer");
-    }
-
-    @Test
-    public void testModifyAddMapInterfaces() throws Exception {
-        renderer.modify(bean);
-        verify(bean).addToImports("java.util.Map");
-        verify(bean).addToImports("java.util.HashMap");
-    }
-
-    @Test
-    public void testModifyDefaultNoListInterfaces() throws Exception {
-        when(bean.getProperties()).thenReturn(asList(nameString));
-        renderer.modify(bean);
-        verify(bean, never()).addToImports("java.util.List");
-        verify(bean, never()).addToImports("java.util.ArrayList");
-    }
-
-    @Test
-    public void testModifyAddListAccessObjectsIfNeeded() throws Exception {
-        when(bean.getProperties()).thenReturn(asList(nameString, numbersIntegerList));
-        renderer.modify(bean);
-        verify(bean).addToImports("java.util.List");
-        verify(bean).addToImports("java.util.ArrayList");
+        verify(bean).addToInterfaces(BeanModifier.MODIFIER_INTERFACE);
     }
 
     @Test

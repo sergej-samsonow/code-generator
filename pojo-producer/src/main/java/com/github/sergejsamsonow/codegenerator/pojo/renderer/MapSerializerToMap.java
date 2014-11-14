@@ -5,8 +5,11 @@ import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndInden
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCRendererForPropertiesContainer;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoProperty;
+import com.github.sergejsamsonow.codegenerator.pojo.renderer.mapserializer.BeanModifier;
 
 public class MapSerializerToMap extends SCRendererForPropertiesContainer<PojoProperty, PojoBean> {
+
+    private static final BeanModifier MODIFIER = new BeanModifier();
 
     public MapSerializerToMap(SCNewLineAndIndentationFormat format) {
         super(format);
@@ -14,17 +17,7 @@ public class MapSerializerToMap extends SCRendererForPropertiesContainer<PojoPro
 
     @Override
     protected void modify() {
-        PojoBean bean = getData();
-        bean.addToInterfaces("com.github.sergejsamsonow.codegenerator.utilities.MapSerializer");
-        bean.addToImports("java.util.Map");
-        bean.addToImports("java.util.HashMap");
-        for (PojoProperty property : bean.getProperties()) {
-            if (property.isList()) {
-                bean.addToImports("java.util.List");
-                bean.addToImports("java.util.ArrayList");
-                break;
-            }
-        }
+        MODIFIER.modify(getData());
     }
 
     @Override
