@@ -10,6 +10,8 @@ public interface PojoProperty {
 
     public boolean isSimpleTypeContainer();
 
+    public String getContainedType();
+
     public String getInitCode();
 
     public Set<String> getImportedTypes();
