@@ -51,7 +51,7 @@ public class MapSerializerToMapTest {
     }
 
     @Test
-    public void testRenderSimpleComplexType() throws Exception {
+    public void testRenderScalarComplexType() throws Exception {
         when(bean.getProperties()).thenReturn(asList(addressComplex));
         assertThat(renderer.render(bean),
             equalTo(Content.of("/pojo-renderer/MapSerializerToMap-Object.txt")));
