@@ -138,74 +138,74 @@ public class SimplePojoPropertyTest {
     }
 
     @Test
-    public void testContiansSimpleTypeBooleanScalar() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "Boolean");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerBooleanScalar() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "Boolean");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeBooleanList() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Boolean>");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerBooleanList() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Boolean>");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeIntegerScalar() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "Integer");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerIntegerScalar() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "Integer");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeIntegerList() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Integer>");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerIntegerList() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Integer>");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeFloatScalar() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "Float");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerFloatScalar() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "Float");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeFloatList() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Float>");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerFloatList() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Float>");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeLongScalar() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "Long");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerLongScalar() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "Long");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeLongList() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Long>");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerLongList() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Long>");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeDoubleScalar() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "Double");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerDoubleScalar() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "Double");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeDoubleList() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Double>");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerDoubleList() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "List<Double>");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeStringScalar() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "String");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerStringScalar() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "String");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 
     @Test
-    public void testContiansSimpleTypeStringList() throws Exception {
-        SimplePojoProperty basicType = new SimplePojoProperty(N, "List<String>");
-        assertThat(basicType.contiansSimpleType(), equalTo(true));
-    }
+        public void testIsSimpleTypeContainerStringList() throws Exception {
+            SimplePojoProperty basicType = new SimplePojoProperty(N, "List<String>");
+            assertThat(basicType.isSimpleTypeContainer(), equalTo(true));
+        }
 }

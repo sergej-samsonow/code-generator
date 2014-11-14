@@ -108,7 +108,7 @@ public class SimplePojoProperty implements PojoProperty {
     }
 
     @Override
-    public boolean contiansSimpleType() {
+    public boolean isSimpleTypeContainer() {
         return containsSimpleType;
     }
 

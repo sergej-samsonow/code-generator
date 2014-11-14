@@ -8,7 +8,7 @@ public interface PojoProperty {
 
     public boolean isList();
 
-    public boolean contiansSimpleType();
+    public boolean isSimpleTypeContainer();
 
     public String getInitCode();
 

@@ -38,7 +38,7 @@ public class MapSerializerToMap extends SCRendererForPropertiesContainer<PojoPro
     @Override
     protected void writePropertyCode(PojoProperty property) {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
-        boolean simple = property.contiansSimpleType();
+        boolean simple = property.isSimpleTypeContainer();
         String field = property.getFieldName();
         String getter = property.getGetterName();
         String template = simple ? "resultMap.put(\"%s\", %s());" : "resultMap.put(\"%s\", %s().toMap());";
