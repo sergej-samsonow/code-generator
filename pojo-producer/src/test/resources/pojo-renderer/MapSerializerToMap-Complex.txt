@@ -5,7 +5,9 @@
         resultMap.put("address", getAddress().toMap());
         resultMap.put("numbers", getNumbers());
         List<Map<String, Object>> personsList = new ArrayList<>();
-        getPersons().stream().forEach(current -> personsList.add(current.toMap()));
+        for (Person current : getPersons()) {
+            personsList.add(current.toMap());
+        }
         resultMap.put("persons", personsList);
         return resultMap;
     }

@@ -45,7 +45,9 @@ public class MapSerializerToMap extends SCRendererForPropertiesContainer<PojoPro
         if ((!simple) && property.isList()) {
             String list = property.getFieldName() + "List";
             writer.code("List<Map<String, Object>> %s = new ArrayList<>();", list);
-            writer.code("%s().stream().forEach(current -> %s.add(current.toMap()));", getter, list);
+            writer.code("for (%s current : %s()) {", property.getContainedType(), getter);
+            writer.indentedCode("%s.add(current.toMap());", list);
+            writer.code("}");
             writer.code("resultMap.put(\"%s\", %s);", field, list);
         }
         else {
