@@ -84,8 +84,9 @@ Erstellt schließende Classklammer.
 
 ##### MapSerializerToMap
 Serialization von Objekt Inhalt zu Map<String, Object>.
-***Wichtig*** wenn man diesen Renderer verwendet dann muss man 
-```com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer``` Interface importieren. 
+**Wichtig** wenn man diesen Renderer verwendet dann muss man
+```com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer```
+Interface für generierten Code bereitstellen.
 ```
 name : String
 address : Address
@@ -103,6 +104,40 @@ persons : List<Person>
         getPersons().stream().forEach(current -> personsList.add(current.toMap()));
         resultMap.put("persons", personsList);
         return resultMap;
+    }
+
+```
+
+##### MapSerializerFromMap
+Serialization von Objekt Inhalt zu Map<String, Object>.
+**Wichtig** wenn man diesen Renderer verwendet dann muss man 
+```com.github.sergejsamsonow.codegenerator.utilities.MapSerilaizer```
+ Interface und
+ ```com.github.sergejsamsonow.codegenerator.utilities.MapAccess```
+ Class für generierten Code bereitstellen.
+
+```
+name : String
+address : Address
+numbers : List<Integer>
+persons : List<Person>
+```
+```java
+    @Override
+    public void fromMap(Map<String, Object> map) {
+        MapAccess mapAccess = new MapAccess(map);
+        setName(mapAccess.getString("name"));
+        Address address = new Address();
+        address.fromMap(mapAccess.getMap("address"));
+        setAddress(address);
+        setNumbers(mapAccess.getIntegerList("numbers"));
+        List<Person> personsList = new ArrayList<>();
+        for (Map<String, Object> current : mapAccess.getMapList("persons")) {
+            Person personsItem = new Person();
+            personsItem.fromMap(current);
+            personsList.add(personsItem);
+        }
+        setPersons(personsList);
     }
 
 ```
