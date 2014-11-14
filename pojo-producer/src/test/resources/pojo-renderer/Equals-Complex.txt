@@ -1,0 +1,12 @@
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Example)) {
+            return false;
+        }
+        Example casted = (Example) object;
+        return Objects.equals(getName(), casted.getName())
+            && Objects.equals(getAddress(), casted.getAddress())
+            && Objects.equals(getNumbers(), casted.getNumbers())
+            && Objects.equals(getPersons(), casted.getPersons());
+    }
+
