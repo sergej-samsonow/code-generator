@@ -34,7 +34,9 @@ extrahiert:
 4. Person Integer Property name
 
 Parameter message wird nicht als Teil des Metatype angesehen es werden nur 
-Informationen nach dem Marker ``Bean : `` ausgewertet.
+Informationen nach dem Marker ``Bean : `` ausgewertet. Momentan wird ein Bean 
+pro Template Beschreibung extrahiert es wurde nicht getestet was passiert 
+wenn eine Beschreibung mehrere Bean Deklarationen enthalten sind.
 
 
 
