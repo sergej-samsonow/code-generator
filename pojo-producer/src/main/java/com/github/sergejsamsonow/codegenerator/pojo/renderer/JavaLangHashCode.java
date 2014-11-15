@@ -19,29 +19,21 @@ public class JavaLangHashCode extends BeanModifier {
     }
 
     @Override
-    protected void writePropertyCode(PojoProperty property) {
-        if (isSingleProperty()) {
-            writeSingleProperty(property);
-        }
-        else {
-            writeCurrentProperty(property);
-        }
-    }
-
-    @Override
     protected void writeAfterPropertiesIteration() {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
         writer.end();
         writer.emptyNewLine();
     }
 
-    private void writeSingleProperty(PojoProperty property) {
+    @Override
+    protected void writeSinglePropertyCode(PojoProperty property) {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
         writer.code("return Objects.hash(");
         writer.indentedCode("%s());", property.getGetterName());
     }
 
-    private void writeCurrentProperty(PojoProperty property) {
+    @Override
+    protected void writeCurrentPropertyCode(PojoProperty property) {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
         String end = isLast() ? ");" : ",";
         if (isFirst()) {

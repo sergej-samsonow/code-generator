@@ -24,29 +24,21 @@ public class JavaLangEquals extends BeanModifier {
     }
 
     @Override
-    protected void writePropertyCode(PojoProperty property) {
-        if (isSingleProperty()) {
-            writeSingleProperty(property);
-        }
-        else {
-            writeCurrentProperty(property);
-        }
-    }
-
-    @Override
     protected void writeAfterPropertiesIteration() {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
         writer.end();
         writer.emptyNewLine();
     }
 
-    private void writeSingleProperty(PojoProperty property) {
+    @Override
+    protected void writeSinglePropertyCode(PojoProperty property) {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
         String getter = property.getGetterName();
         writer.code("return Objects.equals(%s(), casted.%s());", getter, getter);
     }
 
-    private void writeCurrentProperty(PojoProperty property) {
+    @Override
+    protected void writeCurrentPropertyCode(PojoProperty property) {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
         String getter = property.getGetterName();
         if (isFirst()) {

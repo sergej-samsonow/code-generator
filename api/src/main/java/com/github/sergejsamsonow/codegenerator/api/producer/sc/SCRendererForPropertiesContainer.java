@@ -32,8 +32,6 @@ public abstract class SCRendererForPropertiesContainer<X, D extends PropertiesCo
 
     protected void writeBeforePropertiesIteration() {}
 
-    protected void writePropertyCode(X property) {}
-
     protected void writeAfterPropertiesIteration() {}
 
     protected boolean isFirst() {
@@ -54,6 +52,19 @@ public abstract class SCRendererForPropertiesContainer<X, D extends PropertiesCo
         iterateOverProperties();
         writeAfterPropertiesIteration();
     }
+
+    protected void writePropertyCode(X property) {
+        if (isSingleProperty()) {
+            writeSinglePropertyCode(property);
+        }
+        else {
+            writeCurrentPropertyCode(property);
+        }
+    }
+
+    protected void writeSinglePropertyCode(X property) {}
+
+    protected void writeCurrentPropertyCode(X property) {}
 
     private void iterateOverProperties() {
         initIndex();

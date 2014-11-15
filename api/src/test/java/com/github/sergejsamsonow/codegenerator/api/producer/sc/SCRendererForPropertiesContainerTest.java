@@ -80,12 +80,33 @@ public class SCRendererForPropertiesContainerTest {
         }
     }
 
+    private static class AdvancedPropertyIterator extends SCRendererForPropertiesContainer<String, PropertiesContainer<String>> {
+
+        public List<String> order = new ArrayList<>();
+
+        public AdvancedPropertyIterator(SCNewLineAndIndentationFormat format) {
+            super(format);
+        }
+
+        @Override
+        protected void writeSinglePropertyCode(String property) {
+            order.add("single");
+        }
+
+        @Override
+        protected void writeCurrentPropertyCode(String property) {
+            order.add("current");
+        }
+    }
+
     private Wraper wraper;
+    private AdvancedPropertyIterator advanced;
 
     @Before
     public void setUp() {
         when(bean.getProperties()).thenReturn(Collections.emptyList());
         wraper = new Wraper(SCNewLineAndIndentationFormat.unixWithSpaces(2));
+        advanced = new AdvancedPropertyIterator(SCNewLineAndIndentationFormat.unixWithSpaces(2));
     }
 
     @Test
@@ -124,5 +145,19 @@ public class SCRendererForPropertiesContainerTest {
             new FirstLast("one", false, true, false),
             new FirstLast("two", false, false, false),
             new FirstLast("three", false, false, true))));
+    }
+
+    @Test
+    public void testWritePropertyCodeSingle() throws Exception {
+        when(bean.getProperties()).thenReturn(asList("one"));
+        advanced.render(bean);
+        assertThat(advanced.order, equalTo(asList("single")));
+    }
+
+    @Test
+    public void testWritePropertyCodeMultiple() throws Exception {
+        when(bean.getProperties()).thenReturn(asList("one", "two"));
+        advanced.render(bean);
+        assertThat(advanced.order, equalTo(asList("current", "current")));
     }
 }
