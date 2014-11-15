@@ -25,23 +25,37 @@ public class JavaLangEquals extends BeanModifier {
 
     @Override
     protected void writePropertyCode(PojoProperty property) {
-        SCMethodCodeConcatenator writer = getMethodCodeWriter();
-        String getter = property.getGetterName();
-        if (isFirst() && isLast()) {
-            writer.code("return Objects.equals(%s(), casted.%s());", getter, getter);
-            writer.end();
-            writer.emptyNewLine();
-        }
-        else if (isFirst()) {
-            writer.code("return Objects.equals(%s(), casted.%s())", getter, getter);
-        }
-        else if (isLast()) {
-            writer.indentedCode("&& Objects.equals(%s(), casted.%s());", getter, getter);
-            writer.end();
-            writer.emptyNewLine();
+        if (isSingleProperty()) {
+            writeSinglePropery(property);
         }
         else {
-            writer.indentedCode("&& Objects.equals(%s(), casted.%s())", getter, getter);
+            writeCurrentProperty(property);
         }
     }
+
+    @Override
+    protected void writeAfterPropertiesIteration() {
+        SCMethodCodeConcatenator writer = getMethodCodeWriter();
+        writer.end();
+        writer.emptyNewLine();
+    }
+
+    private void writeSinglePropery(PojoProperty property) {
+        SCMethodCodeConcatenator writer = getMethodCodeWriter();
+        String getter = property.getGetterName();
+        writer.code("return Objects.equals(%s(), casted.%s());", getter, getter);
+    }
+
+    private void writeCurrentProperty(PojoProperty property) {
+        SCMethodCodeConcatenator writer = getMethodCodeWriter();
+        String getter = property.getGetterName();
+        if (isFirst()) {
+            writer.code("return Objects.equals(%s(), casted.%s())", getter, getter);
+        }
+        else {
+            String end = isLast() ? ";" : "";
+            writer.indentedCode("&& Objects.equals(%s(), casted.%s())%s", getter, getter, end);
+        }
+    }
+
 }
