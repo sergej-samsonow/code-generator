@@ -25,18 +25,20 @@ public class SCRendererForPropertiesContainerTest {
     private static class FirstLast {
 
         public String proprety;
+        public boolean single;
         public boolean first;
         public boolean last;
 
-        public FirstLast(String property, boolean first, boolean last) {
+        public FirstLast(String property, boolean single, boolean first, boolean last) {
             this.proprety = property;
+            this.single = single;
             this.first = first;
             this.last = last;
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(proprety, first, last);
+            return Objects.hash(proprety, single, first, last);
         }
 
         @Override
@@ -46,6 +48,7 @@ public class SCRendererForPropertiesContainerTest {
             }
             FirstLast casted = (FirstLast) object;
             return Objects.equals(proprety, casted.proprety)
+                && Objects.equals(single, casted.single)
                 && Objects.equals(first, casted.first)
                 && Objects.equals(last, casted.last);
         }
@@ -68,7 +71,7 @@ public class SCRendererForPropertiesContainerTest {
         @Override
         protected void writePropertyCode(String property) {
             order.add(property);
-            firstLast.add(new FirstLast(property, isFirst(), isLast()));
+            firstLast.add(new FirstLast(property, isSingleProperty(), isFirst(), isLast()));
         }
 
         @Override
@@ -102,7 +105,7 @@ public class SCRendererForPropertiesContainerTest {
     public void testRenderOneItemTest() throws Exception {
         when(bean.getProperties()).thenReturn(asList("one"));
         wraper.render(bean);
-        assertThat(wraper.firstLast, equalTo(asList(new FirstLast("one", true, true))));
+        assertThat(wraper.firstLast, equalTo(asList(new FirstLast("one", true, true, true))));
     }
 
     @Test
@@ -110,7 +113,7 @@ public class SCRendererForPropertiesContainerTest {
         when(bean.getProperties()).thenReturn(asList("one", "two"));
         wraper.render(bean);
         assertThat(wraper.firstLast, equalTo(asList(
-            new FirstLast("one", true, false), new FirstLast("two", false, true))));
+            new FirstLast("one", false, true, false), new FirstLast("two", false, false, true))));
     }
 
     @Test
@@ -118,8 +121,8 @@ public class SCRendererForPropertiesContainerTest {
         when(bean.getProperties()).thenReturn(asList("one", "two", "three"));
         wraper.render(bean);
         assertThat(wraper.firstLast, equalTo(asList(
-            new FirstLast("one", true, false),
-            new FirstLast("two", false, false),
-            new FirstLast("three", false, true))));
+            new FirstLast("one", false, true, false),
+            new FirstLast("two", false, false, false),
+            new FirstLast("three", false, false, true))));
     }
 }

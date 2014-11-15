@@ -44,6 +44,10 @@ public abstract class SCRendererForPropertiesContainer<X, D extends PropertiesCo
         return index == last;
     }
 
+    protected boolean isSingleProperty() {
+        return isFirst() && isLast();
+    }
+
     @Override
     protected void render() {
         writeBeforePropertiesIteration();
