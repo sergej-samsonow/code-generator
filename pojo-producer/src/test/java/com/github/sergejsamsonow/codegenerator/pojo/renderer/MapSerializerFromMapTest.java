@@ -11,14 +11,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
-import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
 import com.github.sergejsamsonow.codegenerator.pojo.renderer.mapserializer.BeanModifier;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MapSerializerFromMapTest {
-
-    private static final SCNewLineAndIndentationFormat FORMAT = SCNewLineAndIndentationFormat.unixWithSpaces(4);
 
     private MapSerializerFromMap renderer;
 
@@ -30,7 +27,7 @@ public class MapSerializerFromMapTest {
     @Before
     public void setUp() throws Exception {
         data = new TestData();
-        renderer = new MapSerializerFromMap(FORMAT);
+        renderer = new MapSerializerFromMap(data.format);
         when(bean.getProperties()).thenReturn(asList(data.nameString));
     }
 

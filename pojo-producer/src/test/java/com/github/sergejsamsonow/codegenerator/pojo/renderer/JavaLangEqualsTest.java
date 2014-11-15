@@ -10,13 +10,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
-import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JavaLangEqualsTest {
-
-    private static final SCNewLineAndIndentationFormat FORMAT = SCNewLineAndIndentationFormat.unixWithSpaces(4);
 
     private JavaLangEquals renderer;
 
@@ -28,7 +25,7 @@ public class JavaLangEqualsTest {
     @Before
     public void setUp() throws Exception {
         data = new TestData();
-        renderer = new JavaLangEquals(FORMAT);
+        renderer = new JavaLangEquals(data.format);
         when(bean.getClassName()).thenReturn(data.className);
         when(bean.getProperties()).thenReturn(asList(data.nameString, data.addressComplex, data.numbersIntegerList, data.personsList));
     }
