@@ -2,20 +2,14 @@ package com.github.sergejsamsonow.codegenerator.pojo.renderer;
 
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCMethodCodeConcatenator;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
-import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCRendererForPropertiesContainer;
-import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoProperty;
+import com.github.sergejsamsonow.codegenerator.pojo.renderer.javalang.BeanModifier;
 
-public class JavaLangHashCode extends SCRendererForPropertiesContainer<PojoProperty, PojoBean> {
+public class JavaLangHashCode extends BeanModifier {
 
     public JavaLangHashCode(SCNewLineAndIndentationFormat format) {
         super(format);
     }
-
-    @Override
-    protected void modify() {
-        getData().addToImports("java.util.Objects");
-    };
 
     @Override
     protected void writeBeforePropertiesIteration() {

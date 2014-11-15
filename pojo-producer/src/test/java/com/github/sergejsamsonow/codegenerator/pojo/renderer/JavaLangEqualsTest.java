@@ -3,7 +3,6 @@ package com.github.sergejsamsonow.codegenerator.pojo.renderer;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,12 +35,6 @@ public class JavaLangEqualsTest {
         renderer = new JavaLangEquals(FORMAT);
         when(bean.getClassName()).thenReturn("Example");
         when(bean.getProperties()).thenReturn(asList(nameString, addressComplex, numbersIntegerList, personsList));
-    }
-
-    @Test
-    public void testModifyAddMapSerializerInterface() throws Exception {
-        renderer.modify(bean);
-        verify(bean).addToImports("java.util.Objects");
     }
 
     @Test
