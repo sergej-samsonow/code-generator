@@ -70,8 +70,7 @@ attributes  : List<page.Attribute>
     }
 
     setAttributes(List<Attribute> attributes) {
-        this.attributes = attributes;
-    }
+        this.attributes = attributes; }
 
 ```
 
@@ -81,6 +80,10 @@ Erstellt schließende Classklammer.
 }
 
 ```
+
+
+## MapSerializer Renderers
+Render stellen Implementierung von ```MapSerilaizer``` Interface.
 
 ##### MapSerializerToMap
 Serialization von Objekt Inhalt zu Map<String, Object>.
@@ -142,6 +145,76 @@ persons : List<Person>
             personsList.add(personsItem);
         }
         setPersons(personsList);
+    }
+
+```
+
+## JavaLang Renderers
+JavaLang Renderer stellen Implementierung von wichtigen Java Methoden 
+equals, hashCode und toString.
+
+##### JavaLangEquals
+```
+Example
+name : String
+numbers : List<Integer>
+address : Address
+persons : List<Person>
+```
+```java
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Example)) {
+            return false;
+        }
+        Example casted = (Example) object;
+        return Objects.equals(getName(), casted.getName())
+            && Objects.equals(getAddress(), casted.getAddress())
+            && Objects.equals(getNumbers(), casted.getNumbers())
+            && Objects.equals(getPersons(), casted.getPersons());
+    }
+
+```
+
+##### JavaLangHashCode
+```
+Example
+name : String
+numbers : List<Integer>
+address : Address
+persons : List<Person>
+```
+```java
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            getName(),
+            getAddress(),
+            getNumbers(),
+            getPersons());
+    }
+
+```
+
+##### JavaLangToString
+```
+Example
+name : String
+numbers : List<Integer>
+address : Address
+persons : List<Person>
+```
+```java
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Example (");
+        builder.append("name: " + Objects.toString(getName()) + ", ");
+        builder.append("address: " + Objects.toString(getAddress()) + ", ");
+        builder.append("numbers: " + Objects.toString(getNumbers()) + ", ");
+        builder.append("persons: " + Objects.toString(getPersons()));
+        builder.append(")");
+        return builder.toString();
     }
 
 ```
