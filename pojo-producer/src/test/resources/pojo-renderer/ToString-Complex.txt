@@ -2,10 +2,10 @@
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Example (");
-        builder.append("name: " + getName() + ", ");
+        builder.append("name: " + Objects.toString(getName()) + ", ");
         builder.append("address: " + Objects.toString(getAddress()) + ", ");
         builder.append("numbers: " + Objects.toString(getNumbers()) + ", ");
-        builder.append("persons: " + Objects.toString(getPersons())));
+        builder.append("persons: " + Objects.toString(getPersons()));
         builder.append(")");
         return builder.toString();
     }
