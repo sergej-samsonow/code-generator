@@ -1,0 +1,23 @@
+{namespace pages}
+
+/**
+ * Start site.
+ *
+ * Bean: Index
+ * @param header        : fragments.Header
+ * @param welcomMessage : String
+ * @param form          : fragments.Form
+ * @param result        : List<pages.index.ResultItemInfo>
+ */
+{template .index}
+{call fragments.header data="$header" /}
+
+    <h1>{$welcomMessage}</h1>
+    {call fragments.form data="$form" /}
+    {call pages.index.resultFrame}
+    	{param result : $result /}
+    {/call}
+
+
+{call fragments.footer /}
+{/template}
