@@ -1,5 +1,5 @@
-Parser Komponents
-=================
+Parser Komponenten
+==================
 
 Klassenübersicht
 ![Überblick](src/site/resources/parser.png)
@@ -11,6 +11,7 @@ anschauen.
 
 ##### SoyParser
 Parser für Extraktion von Informationen aus Google Closure Templates Dateien.
+Beispiel:
 ```
     {namespace page}
 
