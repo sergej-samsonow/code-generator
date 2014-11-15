@@ -84,8 +84,30 @@ implementieren danach kann kann man bei Bedarf die folgenden 3 Methoden
 * ```writePropertyCode(X property) : void```
 * ```writeCodeAfterProprertiesIteration() : void```
 
-In wesentlichen stellt SCRendererForPropertiesContainer eine Iterateion über
-Properties Liste da.
+Alternativ kann man folgende Methoden überschreiben und die voreingestellte
+Logic in writePropertyCode(X property) : void nutzen. Voreinstellung ist
+Sofern nur ein einziges Property Eintrag in der List der Properties vorhanden
+ist so wird die Method writeSinglePropertyCode aufgeruffen sonst wird
+bei jeder Iteration die methode writeCurrentPropertyCode aufgerufen.
+
+* ```writeCodeBeforPropertiesIteration() : void``` 
+* ```writeSinglePropertyCode(X property) : void```
+* ```writeCurrentPropertyCode(X property) : void```
+* ```writeCodeAfterProprertiesIteration() : void```
+
+Zusätzlich zu den oben gennanten Methoden stellt Object noch folgende
+methoden zu Verfügung
+
+* ```isSingleProperty() : boolean``` 
+* ```isFirst() : boolean```
+* ```isLast() : boolean```
+
+Über diese Methoden kann man herausfinden welche Listen Element (Property)
+man gerade vor sich hat isFirst - erstes, isLast - letztes und isSingleProperty
+sagt das die Liste nur aus einen einzigen Elementen besteht.
+
+In wesentlichen stellt SCRendererForPropertiesContainer eine Methode für die
+Iterateion über Properties Liste da.
 
 [1]: src/main/java/com/github/sergejsamsonow/codegenerator/api/ProducerAccess.java
 [2]: src/main/java/com/github/sergejsamsonow/codegenerator/api/WriterAccess.java
