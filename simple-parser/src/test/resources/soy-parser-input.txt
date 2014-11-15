@@ -1,9 +1,22 @@
 {namespace pages}
 
 /**
+ * Bean: Message 
+ * @param name : String
+ * @param? greetingWord : String
+ */
+{template .helloName}
+  {if not $greetingWord}
+    Hello {$name}!
+  {else}
+    {$greetingWord} {$name}!
+  {/if}
+{/template}
+
+/**
  * Start site.
  *
- * Bean: Index
+ * Bean: Index extends Simple
  * @param header        : fragments.Header
  * @param welcomMessage : String
  * @param form          : fragments.Form

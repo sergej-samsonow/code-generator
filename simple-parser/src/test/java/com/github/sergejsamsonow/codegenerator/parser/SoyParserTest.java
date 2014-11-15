@@ -13,7 +13,12 @@ import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedBean;
 @RunWith(MockitoJUnitRunner.class)
 public class SoyParserTest {
 
-    private static final ParsedBean INDEX = new SimpleParsedBean("pages", "Index", null, asList(
+    private static final ParsedBean MESSAGE = new SimpleParsedBean("pages", "Message", null, asList(
+        new SimpleParsedProperty("name", "String"),
+        new SimpleParsedProperty("greetingWord", "String")
+        ));
+
+    private static final ParsedBean INDEX = new SimpleParsedBean("pages", "Index", "Simple", asList(
         new SimpleParsedProperty("header", "fragments.Header"),
         new SimpleParsedProperty("welcomMessage", "String"),
         new SimpleParsedProperty("form", "fragments.Form"),
@@ -26,7 +31,14 @@ public class SoyParserTest {
     private SoyParser parser;
 
     @Test
-    public void testParse() throws Exception {
+    public void testParseMessage() throws Exception {
+        parser = new SoyParser(producer);
+        parser.parse(Content.of("/soy-parser-input.txt"));
+        Mockito.verify(producer).newItem(MESSAGE);
+    }
+
+    @Test
+    public void testParseIndex() throws Exception {
         parser = new SoyParser(producer);
         parser.parse(Content.of("/soy-parser-input.txt"));
         Mockito.verify(producer).newItem(INDEX);
