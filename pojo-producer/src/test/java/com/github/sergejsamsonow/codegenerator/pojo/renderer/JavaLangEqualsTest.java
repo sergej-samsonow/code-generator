@@ -12,8 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
-import com.github.sergejsamsonow.codegenerator.pojo.model.PojoProperty;
-import com.github.sergejsamsonow.codegenerator.pojo.model.SimplePojoProperty;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JavaLangEqualsTest {
@@ -22,19 +20,17 @@ public class JavaLangEqualsTest {
 
     private JavaLangEquals renderer;
 
-    private PojoProperty nameString = new SimplePojoProperty("name", "String");
-    private PojoProperty numbersIntegerList = new SimplePojoProperty("numbers", "List<Integer>");
-    private PojoProperty addressComplex = new SimplePojoProperty("address", "Address");
-    private PojoProperty personsList = new SimplePojoProperty("persons", "List<Person>");
+    private TestData data;
 
     @Mock
     private PojoBean bean;
 
     @Before
     public void setUp() throws Exception {
+        data = new TestData();
         renderer = new JavaLangEquals(FORMAT);
-        when(bean.getClassName()).thenReturn("Example");
-        when(bean.getProperties()).thenReturn(asList(nameString, addressComplex, numbersIntegerList, personsList));
+        when(bean.getClassName()).thenReturn(data.className);
+        when(bean.getProperties()).thenReturn(asList(data.nameString, data.addressComplex, data.numbersIntegerList, data.personsList));
     }
 
     @Test
@@ -45,7 +41,7 @@ public class JavaLangEqualsTest {
 
     @Test
     public void testRenderOneField() throws Exception {
-        when(bean.getProperties()).thenReturn(asList(nameString));
+        when(bean.getProperties()).thenReturn(asList(data.nameString));
         assertThat(renderer.render(bean),
             equalTo(Content.of("/pojo-renderer/Equals-Simple.txt")));
     }

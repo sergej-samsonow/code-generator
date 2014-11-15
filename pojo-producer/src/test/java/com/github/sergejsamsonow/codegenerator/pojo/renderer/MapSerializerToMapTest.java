@@ -13,8 +13,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
 import com.github.sergejsamsonow.codegenerator.api.producer.sc.SCNewLineAndIndentationFormat;
 import com.github.sergejsamsonow.codegenerator.pojo.model.PojoBean;
-import com.github.sergejsamsonow.codegenerator.pojo.model.PojoProperty;
-import com.github.sergejsamsonow.codegenerator.pojo.model.SimplePojoProperty;
 import com.github.sergejsamsonow.codegenerator.pojo.renderer.mapserializer.BeanModifier;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,15 +25,13 @@ public class MapSerializerToMapTest {
     @Mock
     private PojoBean bean;
 
-    private PojoProperty nameString = new SimplePojoProperty("name", "String");
-    private PojoProperty numbersIntegerList = new SimplePojoProperty("numbers", "List<Integer>");
-    private PojoProperty addressComplex = new SimplePojoProperty("address", "Address");
-    private PojoProperty personsList = new SimplePojoProperty("persons", "List<Person>");
+    private TestData data;
 
     @Before
     public void setUp() throws Exception {
+        data = new TestData();
         renderer = new MapSerializerToMap(FORMAT);
-        when(bean.getProperties()).thenReturn(asList(nameString));
+        when(bean.getProperties()).thenReturn(asList(data.nameString));
     }
 
     @Test
@@ -52,28 +48,28 @@ public class MapSerializerToMapTest {
 
     @Test
     public void testRenderScalarComplexType() throws Exception {
-        when(bean.getProperties()).thenReturn(asList(addressComplex));
+        when(bean.getProperties()).thenReturn(asList(data.addressComplex));
         assertThat(renderer.render(bean),
             equalTo(Content.of("/pojo-renderer/MapSerializerToMap-Object.txt")));
     }
 
     @Test
     public void testRenderListBasicType() throws Exception {
-        when(bean.getProperties()).thenReturn(asList(numbersIntegerList));
+        when(bean.getProperties()).thenReturn(asList(data.numbersIntegerList));
         assertThat(renderer.render(bean),
             equalTo(Content.of("/pojo-renderer/MapSerializerToMap-IntegerList.txt")));
     }
 
     @Test
     public void testRenderListComplexType() throws Exception {
-        when(bean.getProperties()).thenReturn(asList(personsList));
+        when(bean.getProperties()).thenReturn(asList(data.personsList));
         assertThat(renderer.render(bean),
             equalTo(Content.of("/pojo-renderer/MapSerializerToMap-ListOfObjects.txt")));
     }
 
     @Test
     public void testRender() throws Exception {
-        when(bean.getProperties()).thenReturn(asList(nameString, addressComplex, numbersIntegerList, personsList));
+        when(bean.getProperties()).thenReturn(asList(data.nameString, data.addressComplex, data.numbersIntegerList, data.personsList));
         assertThat(renderer.render(bean),
             equalTo(Content.of("/pojo-renderer/MapSerializerToMap-Complex.txt")));
     }
