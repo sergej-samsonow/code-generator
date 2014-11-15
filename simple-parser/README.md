@@ -1,10 +1,41 @@
-Simple Parser Übersicht
-=======================
+Parser Komponents
+=================
+
+Klassenübersicht
+![Überblick](src/site/resources/parser.png)
+
+##### SimpleParser
 Einfaches Parser Beispiel parst Daten in ein Metamodel welches von den Producer 
 weiterverarbeitet wird. Beispiel Eingabe Datei für diesen Parser kann man [hier][1] 
-anschauen. Es folgt nun die Klassen Übersicht.
+anschauen.
 
-![Überblick](src/site/resources/parser.png)
+##### SoyParser
+Parser für Extraktion von Informationen aus Google Closure Templates Dateien.
+```
+    {namespace page}
+
+    /**
+     * Soy Documentation for Template.
+     * @param message 
+     * 
+     * Bean : Person extends Entry
+     * @param age  : Integer
+     * @param name : String
+     */
+```
+Damit Parser funktionieren kann muss ein Marker ``Bean : `` in Template 
+Beschreibung enthalten sein in oberen Beispiel werden folgene Informationen
+extrahiert:
+
+1. Namespace page
+2. Metatype Person welches von Entry abgeleitet wird beide liegen in Namespace page
+3. Person Integer Property age
+4. Person Integer Property name
+
+Parameter message wird nicht als Teil des Metatype angesehen es werden nur 
+Informationen nach dem Marker ``Bean : `` ausgewertet.
+
+
 
 ## ExtendedBeanDecorator
 Ab und an muss man die von code-generator erstellten Klassen weitere Business 
