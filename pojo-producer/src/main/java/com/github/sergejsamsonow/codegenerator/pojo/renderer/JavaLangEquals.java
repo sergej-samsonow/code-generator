@@ -26,7 +26,7 @@ public class JavaLangEquals extends BeanModifier {
     @Override
     protected void writePropertyCode(PojoProperty property) {
         if (isSingleProperty()) {
-            writeSinglePropery(property);
+            writeSingleProperty(property);
         }
         else {
             writeCurrentProperty(property);
@@ -40,7 +40,7 @@ public class JavaLangEquals extends BeanModifier {
         writer.emptyNewLine();
     }
 
-    private void writeSinglePropery(PojoProperty property) {
+    private void writeSingleProperty(PojoProperty property) {
         SCMethodCodeConcatenator writer = getMethodCodeWriter();
         String getter = property.getGetterName();
         writer.code("return Objects.equals(%s(), casted.%s());", getter, getter);
