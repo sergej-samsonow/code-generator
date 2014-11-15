@@ -20,25 +20,33 @@ public class JavaLangHashCode extends BeanModifier {
 
     @Override
     protected void writePropertyCode(PojoProperty property) {
-        SCMethodCodeConcatenator writer = getMethodCodeWriter();
-        if (isFirst() && isLast()) {
-            writer.code("return Objects.hash(");
-            writer.indentedCode("%s());", property.getGetterName());
-            writer.end();
-            writer.emptyNewLine();
-
-        }
-        else if (isLast()) {
-            writer.indentedCode("%s());", property.getGetterName());
-            writer.end();
-            writer.emptyNewLine();
+        if (isSingleProperty()) {
+            writeSingleProperty(property);
         }
         else {
-            if (isFirst()) {
-                writer.code("return Objects.hash(");
-            }
-            writer.indentedCode("%s(),", property.getGetterName());
+            writeCurrentProperty(property);
         }
     }
 
+    @Override
+    protected void writeAfterPropertiesIteration() {
+        SCMethodCodeConcatenator writer = getMethodCodeWriter();
+        writer.end();
+        writer.emptyNewLine();
+    }
+
+    private void writeSingleProperty(PojoProperty property) {
+        SCMethodCodeConcatenator writer = getMethodCodeWriter();
+        writer.code("return Objects.hash(");
+        writer.indentedCode("%s());", property.getGetterName());
+    }
+
+    private void writeCurrentProperty(PojoProperty property) {
+        SCMethodCodeConcatenator writer = getMethodCodeWriter();
+        String end = isLast() ? ");" : ",";
+        if (isFirst()) {
+            writer.code("return Objects.hash(");
+        }
+        writer.indentedCode("%s()%s", property.getGetterName(), end);
+    }
 }
