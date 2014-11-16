@@ -22,7 +22,7 @@ und dabei eine Menge Tipparbeit zu sparen.
 
 ## Installation
 Wird benötigt maven 3.+ und jdk 8. Testen Sie die installation mit 
-mvn -version und javac -version. Download release [1.1](releases/tag/1.1)
+mvn -version und javac -version. Download release [1.1][1]
 entpacken Sie Archiv wechseln sie in erstes Verzeichnis mit pom.xml und
 führen Sie mvn install aus.
 
@@ -65,3 +65,4 @@ Ist die letzte Schicht und ist für die Ausgabe von generierten Programmcode
 verantwortlich (Standardausgabe oder Dateisystem)
 
 
+[1]: https://github.com/sergej-samsonow/code-generator/releases/tag/1.1
