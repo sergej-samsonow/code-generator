@@ -10,4 +10,12 @@
     <artifactId>code-generator-utilities</artifactId>
     <name>Utilities classes</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
