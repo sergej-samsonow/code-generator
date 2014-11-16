@@ -20,6 +20,11 @@ age : Integer
 in eine konkrete Programmier-Sprache wie z.B. Java oder PHP zu übersetzen 
 und dabei eine Menge Tipparbeit zu sparen.  
 
+## Installation
+Wird benötigt maven 3.+ und jdk 8. Testen Sie die installation mit mvn -version und javac -version.
+Download release 1.1 entpacken Sie Archive wechseln sie in erstes Verzeichnis mit pom.xml und 
+führen Sie mvn install aus.
+
 ## Komponente:
 * [code-generator-api](api) - Entwicklungs API
 * [code-generator-simple-parser](simple-parser) - Beispiel Parser implementierung.
