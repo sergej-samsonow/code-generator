@@ -1,10 +1,10 @@
-package com.github.sergejsamsonow.codegenerator.parser;
+package com.github.sergejsamsonow.codegenerator.api.parser.model;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Objects;
 import org.junit.Test;
-import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedProperty;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.SimpleParsedProperty;
 
 public class SimpleParsedPropertyTest {
 

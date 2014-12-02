@@ -1,10 +1,8 @@
-package com.github.sergejsamsonow.codegenerator.parser;
+package com.github.sergejsamsonow.codegenerator.api.parser.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedBean;
-import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedProperty;
 
 public class SimpleParsedBean implements ParsedBean {
 

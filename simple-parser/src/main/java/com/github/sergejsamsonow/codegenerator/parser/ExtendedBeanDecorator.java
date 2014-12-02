@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Set;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.SimpleParsedBean;
 
 public class ExtendedBeanDecorator implements ProducerAccess<ParsedBean> {
 

@@ -1,4 +1,4 @@
-package com.github.sergejsamsonow.codegenerator.parser;
+package com.github.sergejsamsonow.codegenerator.api.parser.model;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
@@ -8,8 +8,6 @@ import java.util.LinkedList;
 import java.util.Objects;
 import org.junit.Test;
 import org.mockito.Mockito;
-import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedBean;
-import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedProperty;
 
 public class SimpleParsedBeanTest {
 

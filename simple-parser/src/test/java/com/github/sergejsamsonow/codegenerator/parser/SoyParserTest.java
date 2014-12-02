@@ -9,6 +9,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.github.sergejsamsonow.codegenerator.Content;
 import com.github.sergejsamsonow.codegenerator.api.ProducerAccess;
 import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.SimpleParsedBean;
+import com.github.sergejsamsonow.codegenerator.api.parser.model.SimpleParsedProperty;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SoyParserTest {

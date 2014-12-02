@@ -1,7 +1,6 @@
-package com.github.sergejsamsonow.codegenerator.parser;
+package com.github.sergejsamsonow.codegenerator.api.parser.model;
 
 import java.util.Objects;
-import com.github.sergejsamsonow.codegenerator.api.parser.model.ParsedProperty;
 
 public class SimpleParsedProperty implements ParsedProperty {
 
