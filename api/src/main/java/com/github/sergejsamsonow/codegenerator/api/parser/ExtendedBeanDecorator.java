@@ -1,4 +1,4 @@
-package com.github.sergejsamsonow.codegenerator.parser;
+package com.github.sergejsamsonow.codegenerator.api.parser;
 
 import java.util.Collections;
 import java.util.Set;

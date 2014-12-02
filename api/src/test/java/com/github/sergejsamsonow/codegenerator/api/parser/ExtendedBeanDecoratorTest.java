@@ -1,4 +1,4 @@
-package com.github.sergejsamsonow.codegenerator.parser;
+package com.github.sergejsamsonow.codegenerator.api.parser;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
