@@ -1,17 +1,55 @@
 API Übersicht
 =============
-Haupt Schnittstellen [ProducerAccess][1] und [WriterAccess][2]. Für WriterAccess 
-werden zwei Implementierungen bereitgestellt [FileWriter][3] und [StdOutWriter][4]. 
-Producer Paket stellt eine weitere Schnittstelle [Renderer][5] bereit. Aktuell 
-verfügbares Parsermodel wird durch [ParsedBean][13] und [ParsedProperty][14] abgebildet.
+Haupt Schnittstellen sind [ProducerAccess][1] und [WriterAccess][2] diese
+Klassen zusammen mit Parser Model (weiter und unter beschrieben) stellen die
+Hauptapi Schnittstelle da.
 
 ![Überblick](src/site/resources/api.png)
 
+## WriterAccess
+Für WriterAccess werden zwei Implementierungen bereitgestellt [FileWriter][3]
+und [StdOutWriter][4].  Producer Paket stellt eine weitere Schnittstelle
+[Renderer][5] bereit.
+
+## Parser Model
+Aktuell verfügbares Parsermodel wird durch [ParsedBean][13] 
+und [ParsedProperty][14] abgebildet. Klassen [SimpleParsedBean][15] und
+[SimpleParsedProperty][16] stellen die default Implementierung von ParsedBean und
+ParsedProperty Interfaces.
+
+## ExtendedBeanDecorator
+Ab und an muss man die von code-generator erstellten Klassen weitere Business 
+Methoden hinzufügen. Um dies zu ermöglichen wurde [ExtendedBeanDecorator][17]
+erstellt es bittet die Möglichkeit generiertes Bean umzubenennen 
+(an Beanname wird "Base" Suffix angehängt). Wir haben zum Beispiel folgende 
+Metamodel:
+
+```
+    Namspace: frontend
+
+    Person
+    age  : Integer
+    name : String
+```
+
+Nun stellen wir uns vor wir brauchen irgend welche Business Methoden die wir
+auf Person Instanz anhängen wollen, gleichzeitig aber die Person Standard
+Programmcode weiterhin generieren möchten um die Standardmethoden dafür nicht
+manuell schreiben zu müssen. Um dies zu bewerkstelligen gehen wir so vor: 
+Wir erstellen Instanz von ExtendedBeanDecorator an diesen Dekorator übergeben wir
+(abgesehen von Producer) eine Liste mit Typen die wir umbenennen möchten in unseren 
+Fall „frontend.Person“ (Umbenennungstyp wird aus Namespace und Type Name erstellt).
+Bei Programmcodegenerierung wird nun PersonBase satt Person Klasse erstellt. Nachdem
+Programmcode generiert wurde können wir ganz einfach die Person Klasse mit unseren
+Businessmethoden anlegen, Um Standardmethoden zu nutzen wird Person Klasse von
+PersonBase Klasse abgeleitet. 
+
 ## PartialRendererBasedProducer
-[PartialRendererBasedProducer][6] arbeitet mit eine Liste von "Renderer" um Codegenerierung zu bewältigen 
-(z.B. Renderer für Setter Methoden). Die  Ausgaben von einzelnen "Renderer"
-werden dabei zu eine Gesamtausgabe zusammengefügt. Die überschreibende Klasse 
-muss lediglich die Methoden transform und subpath bereitstellen.
+[PartialRendererBasedProducer][6] arbeitet mit eine Liste von "Renderer" um 
+Codegenerierung zu bewältigen (z.B. Renderer für Setter Methoden). Die  Ausgaben
+von einzelnen "Renderer" werden dabei zu eine Gesamtausgabe zusammengefügt.
+Die überschreibende Klasse muss lediglich die Methoden transform und subpath
+bereitstellen.
 
 * ```transform(P parsed) : D``` - Wandelt von Parser kommendes Model in eine 
 Producer Model.
@@ -123,3 +161,6 @@ Iterateion über Properties Liste da.
 [12]: src/main/java/com/github/sergejsamsonow/codegenerator/api/producer/sc/PropertiesContainer.java
 [13]: src/main/java/com/github/sergejsamsonow/codegenerator/api/parser/model/ParsedBean.java
 [14]: src/main/java/com/github/sergejsamsonow/codegenerator/api/parser/model/ParsedProperty.java
+[15]: src/main/java/com/github/sergejsamsonow/codegenerator/api/parser/model/SimpleParsedBean.java
+[16]: src/main/java/com/github/sergejsamsonow/codegenerator/api/parser/model/SimpleParsedProperty.java
+[17]: src/main/java/com/github/sergejsamsonow/codegenerator/api/parser/ExtendedBeanDecorator.java
