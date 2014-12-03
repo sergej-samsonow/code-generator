@@ -39,7 +39,7 @@
 
     <modules>
         <module>api</module>
-        <module>simple-parser</module>
+        <module>parser</module>
         <module>producer</module>
         <module>utilities</module>
     </modules>

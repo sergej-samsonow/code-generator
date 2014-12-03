@@ -7,8 +7,8 @@
         <version>${version}</version>
     </parent>
 
-    <artifactId>simple-parser</artifactId>
-    <name>Simple parser</name>
+    <artifactId>parser</artifactId>
+    <name>Parser classes</name>
 
     <dependencies>
         <dependency>
