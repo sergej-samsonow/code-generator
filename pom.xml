@@ -40,7 +40,7 @@
     <modules>
         <module>api</module>
         <module>simple-parser</module>
-        <module>pojo-producer</module>
+        <module>producer</module>
         <module>utilities</module>
     </modules>
 
