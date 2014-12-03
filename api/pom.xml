@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.sergejsamsonow</groupId>
+        <groupId>com.github.sergejsamsonow.codegenerator</groupId>
         <artifactId>code-generator</artifactId>
         <version>${version}</version>
     </parent>
 
-    <artifactId>code-generator-api</artifactId>
+    <artifactId>api</artifactId>
     <name>Code generator API</name>
 
     <dependencies>

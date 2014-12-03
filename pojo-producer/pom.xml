@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.sergejsamsonow</groupId>
+        <groupId>com.github.sergejsamsonow.codegenerator</groupId>
         <artifactId>code-generator</artifactId>
         <version>${version}</version>
     </parent>
 
-    <artifactId>code-generator-pojo-producer</artifactId>
+    <artifactId>pojo-producer</artifactId>
     <name>POJO generator</name>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.sergejsamsonow</groupId>
-            <artifactId>code-generator-api</artifactId>
+            <groupId>com.github.sergejsamsonow.codegenerator</groupId>
+            <artifactId>api</artifactId>
             <version>${version}</version>
         </dependency>
     </dependencies>
