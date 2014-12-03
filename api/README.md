@@ -2,7 +2,7 @@ API Übersicht
 =============
 Haupt Schnittstellen sind [ProducerAccess][1] und [WriterAccess][2] diese
 Klassen zusammen mit Parser Model (weiter und unter beschrieben) stellen die
-Hauptapi Schnittstelle da.
+Haupt API Schnittstelle da.
 
 ![Überblick](src/site/resources/api.png)
 
