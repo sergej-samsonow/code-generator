@@ -41,6 +41,7 @@
         <module>api</module>
         <module>parser</module>
         <module>producer</module>
+        <module>integration</module>
         <module>utilities</module>
     </modules>
 
